@@ -1,0 +1,37 @@
+{% extends "csnip/base.html" %}
+
+{% block title %} Welconme to CodeSnips! {% endblock %}
+
+{% block content %}
+<!-- <h1> Snippet List </h1> -->
+{% for snippet in snippets %}
+      <div class="container-md">
+
+
+        <div class="row">
+          <div class="snipcard">
+            <h4> <code>{{ snippet.title }} </code> </h4>
+            <br>
+
+              <!-- <pre class="precode"> -->
+      <pre class="precode">
+{{ snippet.body }}
+      </pre>
+              <!-- </pre> -->
+
+              <hr>
+              <a href="#" id="cont">Open Snippet</a>
+
+              </div>
+
+
+
+            </div>
+
+
+          </div>
+      <!-- Main div ends -->
+
+
+{% endfor %}
+{% endblock %}
