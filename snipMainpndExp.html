@@ -9,6 +9,19 @@
         .p-new{
           text-align:center;
         }
+        .p-new-marg{
+          text-align:center;
+          border:dotted;
+          border-radius:20px;
+          margin:auto;
+          border: 1px groove #ccc;
+          width:800px;
+          height:600px;
+          background-color:white;
+          white-space: pre-wrap;
+          word-break: break-word;
+          overflow-x: scroll;
+        }
 
         h4 {
           text-align: center;
@@ -33,8 +46,8 @@
         }
 
         .snipcard-bottom {
-          width: 1400px;
-          height: 200px;
+          width: 800px;
+          height: 600px;
           border: 1px groove #ccc;
           border-radius: 30px;
           margin: auto;
@@ -201,37 +214,49 @@
 
 
 
+          <div class="row">
+
+
+          <div class="container-fluid">
 
 
 
-            <p class="p-new"><b><pre class="p-new">
-              We say that a tree is well-balanced if each node in the tree has two subtrees with roughly the same number of nodes. It’s possible to show that a well-balanced tree with n nodes has depth O(log n).
+            <pre class="p-new-marg"><b>
+<b> Well, I got started with BASIC on my trusty Commodore 64 and then dabbled in other languages (C and Pascal) once I got my first PC.
 
-If we can manage to keep a binary search tree well-balanced, we get an ordered data structure with O(log n) worst-case time complexity for all basic operations: lookup, addition and removal.
+But I couldn’t really wrap my head around C at first, so I spent a lot of time in QBasic for DOS. For some reason I was always really interested in assembly level languages, I really wanted to see what was going on behind the curtain (imagine how mind blown I felt when I later learned about CPU micro code…). And learning x86 assembly and writing a few programs in it made all of the C stuff like pointers and memory management “click.” C is basically a macro assembler with an odd syntax 🙂
 
+Eventually I discovered Delphi, which was (or still is?) sort of a combination of an OOP version of Pascal with an excellent GUI framework and a graphical editor. I wrote tons of software with that, like little games and utilities.
 
-There are several, more or less complicated, strategies to keep a binary search tree well-balanced.
+Delphi was simply amazing. I remember having to save up enough money so I could mail order the “full version” of the Delphi compiler and IDE…
 
-AVL trees came first,
-Red-black trees are used by Java’s TreeSet,
-Treaps, randomized binary search trees, are simple and elegant.
-See the Treaps: randomized search trees article for a full description of treaps.
+Delphi’s standard library and its GUI framework taught me a lot about designing good APIs. Compared to the Win32 and MFC stuff that Microsoft was putting out at the time Delphi’s approach just seemed so much more beautiful. I loved working with Delphi.
 
-In this text we only present pseudocode for some basic operations on unbalanced binary search trees.
+Then after that I had a phase where I was obsessed with writing game engines. There was just something fascinating about how these game engines were almost little operating systems, with their own memory management, filesystem abstractions, and even little multi-threaded scripting runtimes.
 
-Apart from counting words and characters, our online editor can help you to improve word choice and writing style, and, optionally, help you to detect grammar mistakes and plagiarism. To check word count, simply place your cursor into the text box above and start typing. You'll see the number of characters and words increase or decrease as you type, delete, and edit them. You can also copy and paste text from another program over into the online editor above. The Auto-Save feature will make sure you won't lose any changes while editing, even if you leave the site and come back later. Tip: Bookmark this page now.
+Around that time I had access to the internet for the first time and I discovered that some of the Quake 1 source code was already open-source at the time.
 
-Knowing the word count of a text can be important. For example, if an author has to write a minimum or maximum amount of words for an article, essay, report, story, book, paper, you name it. WordCounter will help to make sure its word count reaches a specific requirement or stays within a certain limit.
+You could download the source code for Quake’s scripting language compiler and the game logic from id Software’s FTP server. I ate that stuff up. Initially I had no idea what was going on, but I couldn’t put this code down. I printed it out and carried it around with me and scribbled down notes… I learned so much from reading John Carmack’s code. He’s one of my heroes, I’d love to shake his hand one day and thank him for the impact he had on me as a coder.
 
-In addition, WordCounter shows you the top 10 keywords and keyword density of the article you're writing. This allows you to know which keywords you use how often and at what percentages. This can prevent you from over-using certain words or word combinations and check for best distribution of keywords in your writing.
+So anyway, I was writing these little OpenGL renderers, scripting systems, and networking code and I just went deeper and deeper down these rabbit holes—without actually producing a playable game.
 
-In the Details overview you can see the average speaking and reading time for your text, while Reading Level is an indicator of the education level a person would need in order to understand the words you’re using.
+At some point I had built almost this “Game SDK” with my own VM-based scripting language and hot-reloading for code changes and a graphical map editor—but there was practically no progress on the game I wanted to build (and that I had promised to my friends).
 
-Disclaimer: We strive to make our tools as accurate as possible but we cannot guarantee it will always be so.
-            </pre></b></p>
+This experience taught me a lot about pragmatic design and program architecture. I got so tangled up in this mess (even though it was fun) that I made no actual progress on the things I said I was going to build. I’m sure most developers are familiar with this effect 😊
 
+I don’t want to make this too long-winded… So, long story short, at one point or another I got paid to write software in Java, Objective-C, JavaScript, CoffeeScript, Go, and Swift. During my university days I also got to dabble in Haskell and a few more esoteric languages like Prolog and OCaml.
 
+Now to reel it all the way back in to Python:
 
+Of course Python is my favorite programming language! I still remember when I thought about Python in those terms for the first time:
+
+I was asked to re-write a terribly convoluted mess of a Java web application that was the API back-end for a mobile app. I rebuilt the whole thing in Python with Flask and SQLAlchemy. It took me about a month to do it and I used a test-first development style for everything.
+
+The whole experience was just so enjoyable and felt so “right” I couldn’t believe it at first. Since those days my love for Python never faded 🙂
+                  </b></pre>
+                </div>
+
+                </div>
 
 
 
