@@ -6,8 +6,8 @@ from .models import Snippet
 class SnippetAdmin(admin.ModelAdmin):
     list_display = ('title','slug','author','created')
     list_filter = ('created','title','author')
-    search_fields = ('body',)
+    search_fields = ('title','author', 'body')
     prepopulated_fields = {'slug':('title',)}
     raw_id_fields = ('author',)
     date_hierarchy = 'created'
-    ordering = ('created','title')
+    ordering = ('created',)

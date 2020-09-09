@@ -1,9 +1,10 @@
 {% extends "csnip/base.html" %}
 
-{% block title %} Welconme to CodeSnips! {% endblock %}
+{% block title %} Welcome to CodeSnips! {% endblock %}
 
 {% block content %}
 <!-- <h1> Snippet List </h1> -->
+
 {% for snippet in snippets %}
       <div class="container-md">
 
@@ -14,13 +15,13 @@
             <br>
 
               <!-- <pre class="precode"> -->
-      <pre class="precode">
+<pre class="precode">
 {{ snippet.body }}
-      </pre>
+</pre>
               <!-- </pre> -->
 
               <hr>
-              <a href="#" id="cont">Open Snippet</a>
+              <a href="{{ snippet.get_absoulte_url }}" id="cont">Open Snippet</a>
 
               </div>
 

@@ -1,13 +1,33 @@
-{% load static %}
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta name = "viewport" charset="utf-8" content="width=device-width, initial-scale=1">
-
-    <title>{% block title %} Welcome to CodeSnips {% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <title> Welcome to CodeSnips </title>
     <style>
 
+
+
+        .p-new{
+          text-align:center;
+        }
+        .p-new-marg{
+          text-align:center;
+          border:dotted;
+          border-radius:20px;
+          margin:auto;
+          border: 1px groove #ccc;
+          width:800px;
+          height:600px;
+          display: flex;
+          justify-content: center;
+          background-color:white;
+          white-space: pre-wrap;
+          word-break: break-word;
+          overflow-x: scroll;
+        }
 
         h4 {
           text-align: center;
@@ -17,12 +37,10 @@
           text-align: justify;
         }
 
-        .p-new{
-          text-align:center;
-        }
+
         .snipcard {
-          width: 400px;
-          height: 300px;
+          width: 800px;
+          height: 600px;
           border: 1px groove #ccc;
           border-radius: 30px;
           margin: auto;
@@ -33,12 +51,24 @@
 
         }
 
+        .snipcard-bottom {
+          width: 800px;
+          height: 600px;
+          border: 1px groove #ccc;
+          border-radius: 30px;
+          margin: auto;
+          padding: 4px;
+          border-style:solid;
+
+
+
+        }
+
 
         .nav-bar{
           height:30px;
-          text-color:blue;
-          background-color:black;
-
+          text-color:black;
+          font-family: monospace;
 
 
         }
@@ -66,7 +96,7 @@
         .main-val { color: black; }
 
         .precode{
-          height:150px;
+          height:500px;
           background-color:white;
           border:hidden;
 
@@ -90,13 +120,12 @@
 
   <body>
     <!-- Nav bar div starts -->
-
     <div class="container-fluid">
 
 
     <nav class= "nav-bar">
       <ul class = "nav-ul">
-        <li><a class = "main-val" href = "#"> Code Snippets </a> </li>
+        <li><a class = "main-val" href = "#"> CodeSnip </a> </li>
         <li><a class = "main-val" href = "#"> About </a> </li>
         <li><a class = "main-val" href = "#"> LogIn </a> </li>
         <li><a class = "main-val" href = "#"> Sign Up </a> </li>
@@ -110,17 +139,60 @@
   <hr style="height:0.5px;border:none;background-color:#333;" />
 
   <!-- Main div starts -->
+  <div class="container-md">
 
-  <!-- Main div starts -->
-{% block content %}
 
+    <div class="row">
+      <div class="snipcard">
+        <h4> <code>{{ snippet.title }} </code> </h4>
+        <br>
+
+          <!-- <pre class="precode"> -->
+<pre class="precode">
+{{ snippet.body }}
+</pre>
+          <!-- </pre> -->
+
+          <!-- <hr> -->
+          <!-- <a href="#" id="cont">Open Snippet</a> -->
+
+          </div>
+          <br>
+
+
+
+
+          <div class="row">
+
+
+          <div class="container-fluid">
+
+
+
+                <pre class="p-new-marg">
+<b>
+{{ snippet.explanation }}
+</b>
+                </pre>
+            </div>
+
+                </div>
+
+
+
+
+        </div>
+
+
+      </div>
   <!-- Main div ends -->
-{% endblock %}
+
+
   </body>
+
 
 
 <hr>
 <footer class="p-new"> <b>&#169; <code>A Vikrant Gawde Production</code> 2020</b></footer>
-
 
 </html>

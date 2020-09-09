@@ -26,6 +26,7 @@ class Snippet(models.Model):
     slug = models.SlugField(max_length=300, unique_for_date='created')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='snippets_posts', default="NONAME")
     published = SnippetManager()
+    explanation = models.TextField(max_length=500, default='NO EXPLANATION')
 
     class Meta:
         ordering = ('-created',)
