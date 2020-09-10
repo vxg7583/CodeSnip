@@ -1,16 +1,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
-<div class="pagination text-primary ">
-  <span class="step-links">
-    {% if page.has_previous %}
-      <a href="?page={{ page.previous_page_number }}">Previous</a>
-    {% endif %}
-    <span class = "current">
+<div class="pagination">
+
+
+
+
+    <div class = "col-md-12 current">
+      {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}"> Previous</a>
+      {% endif %}
         Page {{ page.number }} of {{ page.paginator.num_pages }}.
-    </span>
-    {% if page.has_next %}
-      <a href="?page={{ page.next_page_number }}">Next</a>
-    {% endif %}
-  </span>
+        {% if page.has_next %}
+          <a href="?page={{ page.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+
+
 
 </div>

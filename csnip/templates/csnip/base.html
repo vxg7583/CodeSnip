@@ -8,9 +8,21 @@
     <title>{% block title %} Welcome to CodeSnips {% endblock %}</title>
     <style>
 
+    .logo {
+      /* border-style:dotted; */
 
+      border-radius: 20px;
+      margin: auto;
+      padding: 9px;
+      border-width:2px;
+      text-align:left;
+      background-color: black;
+      /* position:absolute; */
+
+    }
         h4 {
           text-align: center;
+
 
         }
         p {
@@ -27,21 +39,14 @@
           border-radius: 30px;
           margin: auto;
           padding: 4px;
-          border-style:dotted;
+          /* border-style:dotted; */
 
 
 
         }
 
 
-        .nav-bar{
-          height:30px;
-          text-color:blue;
-          background-color:black;
 
-
-
-        }
         li{
           display: inline-block;
 
@@ -63,7 +68,11 @@
           padding: 14px 16px;
           text-decoration: none;
         }
-        .main-val { color: black; }
+        .main-val {
+                  color: black;
+                  text-align:right;
+              }
+        .logo_li {text-align:left;}
 
         .precode{
           height:150px;
@@ -73,7 +82,7 @@
         }
 
         #cont {
-          border: 0.5px groove #ccc;
+          /* border: 0.5px groove #ccc; */
           display: flex;
           justify-content: center;
           border-radius: 30px;
@@ -94,10 +103,10 @@
     <div class="container-fluid">
 
 
-    <nav class= "nav-bar">
+    <nav class= "navbar bgnavbar-dark navbar-fixed-top">
       <ul class = "nav-ul">
-        <li><a class = "main-val" href = "#"> Code Snippets </a> </li>
-        <li><a class = "main-val" href = "#"> About </a> </li>
+        <li class="align-left"><a class = "logo" href = "#"> <b>CodeSnip</b> </a> </li>
+
         <li><a class = "main-val" href = "#"> LogIn </a> </li>
         <li><a class = "main-val" href = "#"> Sign Up </a> </li>
       </ul>
@@ -107,8 +116,11 @@
 
   </div>
   <!-- Nav Bar div ends -->
-  <hr style="height:0.5px;border:none;background-color:#333;" />
-
+  <!-- <hr style="height:0.5px;border:none;background-color:#333;"/> -->
+  <br>
+  <br>
+  <br>
+  <br>
   <!-- Main div starts -->
 
   <!-- Main div starts -->
@@ -117,7 +129,9 @@
   <!-- Main div ends -->
 {% endblock %}
   </body>
-
+<div class="text-center d-flex justify-content-center">
+  <b>{% include "pagination.html" with page=snippets %}</b>
+</div>
 
 <hr>
 <footer class="p-new"> <b>&#169; <code>A Vikrant Gawde Production</code> 2020</b></footer>

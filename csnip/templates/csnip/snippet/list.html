@@ -11,7 +11,7 @@
 
         <div class="row">
           <div class="snipcard">
-            <h4> <code>{{ snippet.title }} </code> </h4>
+            <h4> <b>{{ snippet.title }}</b> </h4>
             <br>
 
               <!-- <pre class="precode"> -->
@@ -21,7 +21,7 @@
               <!-- </pre> -->
 
               <hr>
-              <a href="{{ snippet.get_absoulte_url }}" id="cont">Open Snippet</a>
+              <a href="{{ snippet.get_absoulte_url }}" id="cont"><b>Open Snippet</b></a>
 
               </div>
 
@@ -33,7 +33,9 @@
           </div>
       <!-- Main div ends -->
 
+<br>
 
 {% endfor %}
-  {% include "pagination.html" with page=snippets %}
+
 {% endblock %}
+{% include "pagination.html" with page=snippets %}
