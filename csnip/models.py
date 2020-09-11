@@ -8,7 +8,7 @@ from django.urls import reverse
 
 class SnippetManager(models.Manager):
     def get_queryset(self):
-        return super(SnippetManager, self).get_queryset().filter(author=1)
+        return super(SnippetManager, self).get_queryset().filter()
 
 
 

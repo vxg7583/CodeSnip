@@ -3,6 +3,8 @@ from .models import Snippet
 from django.core.paginator import Paginator, EmptyPage,\
                                     PageNotAnInteger
 
+from django.views.generic import ListView
+
 
 # Create your views here.
 def snippet_list(request):
@@ -21,3 +23,9 @@ def snippet_list(request):
 def snippet_detail(request, year, month, day, snippet):
     snippet = get_object_or_404(Snippet, slug=snippet, created__year=year, created__month=month, created__day=day)
     return render(request, 'csnip/snippet/detail.html', {'snippet':snippet})
+
+# class SnippetListView(ListView):
+#     queryset = Snippet.published.all()
+#     context_object_name = 'snippets'
+#     paginate_by = 5
+#     template_name = 'csnip/snippet/list.html'

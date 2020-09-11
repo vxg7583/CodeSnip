@@ -1,138 +1,18 @@
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <!-- <meta name = "viewport" charset="utf-8" content="width=device-width, initial-scale=1"> -->
-    <meta name = "viewport" charset="utf-8" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <title> Welcome to CodeSnips </title>
-    <style>
+{% extends "csnip/base.html" %}
 
 
 
-        .p-new{
-          text-align:center;
-        }
-        .p-new-marg{
-          text-align:center;
-          border:dotted;
-          border-radius:20px;
-          margin:auto;
-          border: 1px groove #ccc;
-          width:800px;
-          height:600px;
-          display: flex;
-          justify-content: center;
-          background-color:white;
-          white-space: pre-wrap;
-          word-break: break-word;
-          overflow-x: scroll;
-        }
-
-        h4 {
-          text-align: center;
-
-        }
-        p {
-          text-align: justify;
-        }
-
-
-        .snipcard {
-          width: 800px;
-          height: 600px;
-          border: 1px groove #ccc;
-          border-radius: 30px;
-          margin: auto;
-          padding: 4px;
-          border-style:dotted;
-
-
-
-        }
-
-        .snipcard-bottom {
-          width: 800px;
-          height: 600px;
-          border: 1px groove #ccc;
-          border-radius: 30px;
-          margin: auto;
-          padding: 4px;
-          border-style:solid;
-
-
-
-        }
-
-
-        .nav-bar{
-          height:30px;
-          text-color:black;
-          font-family: monospace;
-
-
-        }
-        li{
-          display: inline-block;
-
-        }
-
-        .nav-ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background-color: white;
-          text-align:center;
-          text-color:black;
-        }
-        li a {
-          display: block;
-          color: white;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-        }
-        .main-val { color: black; }
-
-        .precode{
-          height:500px;
-          background-color:white;
-          border:hidden;
-
-        }
-
-        #cont {
-          border: 0.5px groove #ccc;
-          display: flex;
-          justify-content: center;
-          border-radius: 30px;
-
-
-
-        }
-
-
-  </style>
-
-  </head>
-
-
-  <body>
+{% block content %}
+<style media="screen">
+  .lefttext{
+    text-align:left;
+  }
+</style>
     <!-- Nav bar div starts -->
     <div class="container-fluid">
 
 
-    <nav class= "nav-bar">
-      <ul class = "nav-ul">
-        <li><a class = "main-val" href = "#"> CodeSnip </a> </li>
-        <li><a class = "main-val" href = "#"> About </a> </li>
-        <li><a class = "main-val" href = "#"> LogIn </a> </li>
-        <li><a class = "main-val" href = "#"> Sign Up </a> </li>
-      </ul>
 
-    </nav>
 
 
   </div>
@@ -162,38 +42,17 @@
 
 
 
-
-          <div class="row">
-
-
-          <div class="container-fluid">
-
-
-
-                <pre class="p-new-marg">
-<b>
-{{ snippet.explanation }}
-</b>
-                </pre>
-            </div>
-
-                </div>
-
-
-
-
-        </div>
-
+</div>
+<p class = "lefttext">{{ snippet.explanation }}</p>
 
       </div>
   <!-- Main div ends -->
 
 
-  </body>
+{% endblock %}
 
 
+<!-- <hr>
+<footer class="p-new"> <b>&#169; <code>A Vikrant Gawde Production</code> 2020</b></footer> -->
 
-<hr>
-<footer class="p-new"> <b>&#169; <code>A Vikrant Gawde Production</code> 2020</b></footer>
-
-</html>
+<!-- </html> -->
