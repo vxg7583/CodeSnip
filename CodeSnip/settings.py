@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 
+    'account',
     'csnip',
     'django.contrib.admin',
     'django.contrib.auth',
