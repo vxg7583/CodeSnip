@@ -18,7 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('csnip/', include('csnip.urls', namespace='csnip')),
-    path('', include('csnip.urls', namespace='csnip')),
-    
+    # path('csnip/', include('csnip.urls', namespace='csnip')),
+    path('', include('csnip.urls', namespace='')),
+
 ]
