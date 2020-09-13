@@ -8,7 +8,6 @@
     <title>{% block title %} Welcome to CodeSnips {% endblock %}</title>
     <style>
 
-
     .logo {
       /* border-style:dotted; */
 
@@ -105,14 +104,23 @@
 
 
     <nav class= "navbar bgnavbar-dark navbar-fixed-top">
-      <ul class = "nav-ul">
-        <br>
-        <br>
-        <li class="align-left"><a class = "logo" href = "#"> <b>CodeSnip</b> </a> </li>
+      {% if request.user.is_authenticated %}
 
-        <!-- <li><a class = "main-val" href = "#"> LogIn </a> </li>
-        <li><a class = "main-val" href = "#"> Sign Up </a> </li> -->
-      </ul>
+          <ul class = "nav-ul">
+            <li class="align-left"><a class = "logo" href = "#"> <b>CodeSnip</b> </a> </li>
+
+            <li><a class = "main-val" href = "#"> Dashboard </a> </li>
+            <!-- <li><a class = "main-val" href = "#"> Sign Up </a> </li> -->
+          </ul>
+        {% else %}
+
+          <ul class = "nav-ul">
+            <li class="align-left"><a class = "logo" href = "#"> <b>CodeSnip</b> </a> </li>
+
+            <li><a class = "main-val" href = "#"> Dashboard </a> </li>
+            <!-- <li><a class = "main-val" href = "#"> Sign Up </a> </li> -->
+          </ul>
+        {% endif %}
 
     </nav>
 
@@ -127,17 +135,17 @@
   <!-- Main div starts -->
 
   <!-- Main div starts -->
-      {% block content %}
+{% block content %}
 
-        <!-- Main div ends -->
-      {% endblock %}
+  <!-- Main div ends -->
+{% endblock %}
   </body>
-<!-- <div class="text-center d-flex justify-content-center">
+<div class="text-center d-flex justify-content-center">
   <b>{% include "pagination.html" with page=snippets %}</b>
-</div> -->
+</div>
 
-<!-- <hr> -->
-<footer class="p-new"> <code><b>&#169; A Vikrant Gawde Production</b></code> 2020</footer>
+<hr>
+<footer class="p-new"> <b>&#169; <code>A Vikrant Gawde Production</code> 2020</b></footer>
 
 
 </html>
