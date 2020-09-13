@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings
 
 # Create your models here.
 
@@ -18,6 +19,7 @@ class SnippetManager(models.Manager):
 
 
 class Snippet(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='snippet_created', on_delete=models.CASCADE)
     title = models.TextField(max_length = 30)
     body = models.TextField()
     publish = models.DateTimeField(default = timezone.now)
