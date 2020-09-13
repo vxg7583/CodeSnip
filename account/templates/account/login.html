@@ -1,91 +1,20 @@
-{% extends "account/base1.html" %}
-
-{% block title %} Log-In {% endblock %}
-
-
-{% block content %}
-
-<style media="screen">
-  body {
-       background-color: white;
-       font-family: 'Ubuntu', monospace;
-   }
-
-   .main {
-       background-color: #FFFFFF;
-       width: 400px;
-       height: 400px;
-       margin: 7em auto;
-       border-radius: 1.5em;
-       box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-   }
-
-   .sign {
-       padding-top: 40px;
-       color: #8C55AA;
-       font-family: 'Ubuntu', monospace;
-       font-weight: bold;
-       font-size: 23px;
-       text-align:center;
-   }
-
-
-   form.form1 {
-       padding-top: 40px;
-   }
-
-
-
-   .forgot {
-       text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-       color: #E1BEE7;
-       padding-top: 15px;
-       text-align:center;
-   }
-
-   a {
-       text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-       color: #E1BEE7;
-       text-decoration: none
-   }
-
-   @media (max-width: 600px) {
-       .main {
-           border-radius: 0px;
-       }
-
-  .tryy {
-    text-align:center;
-
-
-
-  }
-
-</style>
-<br>
-<div class="row">
-  <div class="main">
-  <p class="sign" align="center">Sign in</p>
 
 
 
 
 
-  <form class="form1" action="." method="post">
-<div class="tryyy">
-  {{ form.as_p }}
-  {% csrf_token %}
-</div>
 
-    <!-- <input class="un " type="text" align="center" placeholder="Username">
-    <input class="pass" type="password" align="center" placeholder="Password"> -->
-    <!-- <a class="submit" align="center">Sign in</a>
-    <p class="forgot" align="center"><a href="#">Forgot Password?</p> -->
+  <h2 align="center">Sign In</h2>
+  <form align = 'center' action="." method="post">
 
 
-  </div>
+      {% csrf_token %}
+      {{ form.as_p }}
+
+    <p><input type="submit" name="" value="Sign In"></p>
 
 
-</div>
-<br>
-{% endblock %}
+
+
+
+  </form>
