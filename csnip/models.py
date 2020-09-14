@@ -29,6 +29,7 @@ class Snippet(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='snippets_posts', default="NONAME")
     published = SnippetManager()
     explanation = models.TextField(max_length=500, default='NO EXPLANATION')
+    user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='snippets_liked',blank=True)
 
     class Meta:
         ordering = ('-created',)
