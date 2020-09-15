@@ -115,9 +115,9 @@
         {% else %}
 
           <ul class = "nav-ul">
-            <li class="align-left"><a class = "logo" href = "#"> <b>CodeSnip</b> </a> </li>
+            <li class="align-left"><a class = "logo" href = "{% url 'csnip:snippet_list' %}"> <b>CodeSnip</b> </a> </li>
 
-            <li><a class = "main-val" href = "#"> Login </a> </li>
+            <li><a class = "main-val" href = "{% url 'login' %}"> Login </a> </li>
             <li><a class = "main-val" href = "#"> Sign Up </a> </li>
           </ul>
         {% endif %}
