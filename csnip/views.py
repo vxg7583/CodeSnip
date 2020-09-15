@@ -8,6 +8,8 @@ from .forms import SnippetCreateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.text import slugify
+import uuid
+# uuid.uuid4().hex[:6].upper()
 
 
 # Create your views here.
@@ -35,6 +37,7 @@ def snippet_detail(request, year, month, day, snippet):
     # , created__year=year, created__month=month, created__day=day)
     return render(request, 'csnip/snippet/detail.html', {'snippet':snippet})
 
+
 @login_required
 def snippet_create(request):
     '''
@@ -46,7 +49,8 @@ def snippet_create(request):
         if form.is_valid():
             cd = form.cleaned_data
             new_item = form.save(commit=False)
-            new_item.slug = slugify(new_item.title)
+            s = new_item.title[::-1]+new_item.explanation[:5]+uuid.uuid4().hex[:6].upper()
+            new_item.slug = slugify(s)
             # assign current user to the snippet
             new_item.user = request.user
             new_item.save()
