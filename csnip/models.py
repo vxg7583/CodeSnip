@@ -25,7 +25,7 @@ class Snippet(models.Model):
     publish = models.DateTimeField(default = timezone.now)
     created = models.DateTimeField(auto_now_add = True)
     updated = models.DateTimeField(auto_now = True)
-    slug = models.SlugField(max_length=300, unique_for_date='created')
+    slug = models.SlugField(max_length=300, unique=True)
     author = models.CharField(user, max_length=500)
     published = SnippetManager()
     explanation = models.TextField(max_length=500, default='NO EXPLANATION')

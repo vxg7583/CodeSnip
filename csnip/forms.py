@@ -7,7 +7,7 @@ from django.utils.text import slugify
 class SnippetCreateForm(forms.ModelForm):
     class Meta:
         model = Snippet
-        fields = ('body','explanation','slug')
+        fields = ('title','body','explanation')
 
     # def save(self, force_insert=False, force_update=False, commit=True):
     #     snippet = super(SnippetCreateForm, self).save(commit=False)

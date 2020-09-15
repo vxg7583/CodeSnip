@@ -31,7 +31,8 @@ def snippet_list(request):
     return render(request, 'csnip/snippet/list.html', {'page':page,'snippets':snippets})
 
 def snippet_detail(request, year, month, day, snippet):
-    snippet = get_object_or_404(Snippet, slug=snippet, created__year=year, created__month=month, created__day=day)
+    snippet = get_object_or_404(Snippet, slug=snippet)
+    # , created__year=year, created__month=month, created__day=day)
     return render(request, 'csnip/snippet/detail.html', {'snippet':snippet})
 
 @login_required
@@ -45,14 +46,19 @@ def snippet_create(request):
         if form.is_valid():
             cd = form.cleaned_data
             new_item = form.save(commit=False)
-
+            new_item.slug = slugify(new_item.title)
             # assign current user to the snippet
             new_item.user = request.user
             new_item.save()
             messages.success(request, "Snippet Added Successfully")
 
             # redirect to newly created item detail view
+            # try:
             return redirect(new_item.get_absoulte_url())
+            # except:
+
+
+
     else:
         form = SnippetCreateForm()
 
