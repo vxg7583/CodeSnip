@@ -9,6 +9,7 @@ urlpatterns = [
     path('',views.snippet_list, name='snippet_list'),
     path('<int:year>/<int:month>/<int:day>/<slug:snippet>/',\
          views.snippet_detail, name='snippet_detail'),
+    path('create/', views.snippet_create, name='create'),
 
 
 ]

@@ -8,6 +8,6 @@ class SnippetAdmin(admin.ModelAdmin):
     list_filter = ('created','title','author')
     search_fields = ('title','author', 'body')
     prepopulated_fields = {'slug':('title',)}
-    raw_id_fields = ('author',)
+    raw_id_fields = ('user',)
     date_hierarchy = 'created'
     ordering = ('created',)

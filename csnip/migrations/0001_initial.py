@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
                 ('slug', models.SlugField(max_length=300, unique_for_date='created')),
-                ('author', models.ForeignKey(default='NONAME', on_delete=django.db.models.deletion.CASCADE, related_name='snippets_posts', to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='snippets_posts', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ('-created',),
