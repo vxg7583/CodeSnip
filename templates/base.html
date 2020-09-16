@@ -109,7 +109,9 @@
           <ul class = "nav-ul">
             <li class="align-left"><a class = "logo" href = "{% url 'csnip:snippet_list' %}"> <b>CodeSnip</b> </a> </li>
 
-            <li><a class = "main-val" href = "#"> Dashboard </a> </li>
+            <li><a class = "main-val" href = "{% url 'dashboard' %}"> Dashboard </a> </li>
+            <li>Hello {{ request.user.first_name }}</li>
+            <a href="{% url 'logout' %}">Logout</a>
             <!-- <li><a class = "main-val" href = "#"> Sign Up </a> </li> -->
           </ul>
         {% else %}
@@ -119,6 +121,7 @@
 
             <li><a class = "main-val" href = "{% url 'login' %}"> Login </a> </li>
             <li><a class = "main-val" href = "#"> Sign Up </a> </li>
+
           </ul>
         {% endif %}
 
@@ -140,12 +143,14 @@
   <!-- Main div ends -->
 {% endblock %}
   </body>
+{% block paginator %}
 <div class="text-center d-flex justify-content-center">
   <b>{% include "pagination.html" with page=snippets %}</b>
 </div>
-
+{% endblock %}
 <hr>
+{% block footer %}
 <footer class="p-new"> <b>&#169; <code>A Vikrant Gawde Production</code> 2020</b></footer>
-
+{% endblock %}
 
 </html>
