@@ -1,7 +1,7 @@
 from urllib import request
 from django.core.files.base import ContentFile
 from django import forms
-from .models import Snippet
+from .models import Snippet, Comment
 from django.utils.text import slugify
 
 class SnippetCreateForm(forms.ModelForm):
@@ -23,3 +23,9 @@ class EmailPostForm(forms.Form):
     email = forms.EmailField()
     to = forms.EmailField()
     comments = forms.CharField(required=False,widget=forms.Textarea)
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'body')
+        

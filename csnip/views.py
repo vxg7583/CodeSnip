@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Snippet
+from .models import Snippet, Comment
 from django.core.paginator import Paginator, EmptyPage,\
                                     PageNotAnInteger
 
 from django.views.generic import ListView
-from .forms import SnippetCreateForm, EmailPostForm
+from .forms import SnippetCreateForm, EmailPostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.text import slugify
@@ -42,8 +42,6 @@ def snippet_share(request, snippet_id):
 
 
 
-
-
 def snippet_list(request):
     object_list = Snippet.published.all()
     paginator = Paginator(object_list,3)
@@ -57,10 +55,27 @@ def snippet_list(request):
 
     return render(request, 'csnip/snippet/list.html', {'page':page,'snippets':snippets})
 
+
 def snippet_detail(request, year, month, day, snippet):
     snippet = get_object_or_404(Snippet, slug=snippet)
     # , created__year=year, created__month=month, created__day=day)
-    return render(request, 'csnip/snippet/detail.html', {'snippet':snippet})
+    # List of active comments for this snippet
+    comments = snippet.comments.filter(active=True)
+    new_comment = None
+
+    if request.method == 'POST':
+        # A comment was posted
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.snippet = snippet
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    return render(request, 'csnip/snippet/detail.html', {'snippet':snippet,'comments':comments, 'new_comment':new_comment,'comment_form':comment_form})
+
+
+
 
 
 @login_required

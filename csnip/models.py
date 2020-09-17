@@ -12,12 +12,6 @@ class SnippetManager(models.Manager):
         return super(SnippetManager, self).get_queryset().filter()
 
 
-
-
-
-
-
-
 class Snippet(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='snippets_created', on_delete=models.CASCADE)
     title = models.TextField(max_length = 30)
@@ -40,5 +34,20 @@ class Snippet(models.Model):
     def get_absoulte_url(self):
         return reverse('csnip:snippet_detail', args=[self.created.year, \
                                                     self.created.month,\
-                                                    self.created.day,
-                                                    self.slug])
+                                                    self.created.day,self.slug])
+
+
+class Comment(models.Model):
+    snippet = models.ForeignKey(Snippet, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ('created',)
+
+    def __str__(self):
+        return 'Comment by {} on {}'.format(self.name, self.snippet)
