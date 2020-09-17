@@ -4,11 +4,13 @@ from django.core.paginator import Paginator, EmptyPage,\
                                     PageNotAnInteger
 
 from django.views.generic import ListView
-from .forms import SnippetCreateForm
+from .forms import SnippetCreateForm, EmailPostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.text import slugify
 import uuid
+from django.core.mail import send_mail
+
 # uuid.uuid4().hex[:6].upper()
 
 
@@ -18,6 +20,29 @@ import uuid
 #     context_object_name = 'snippets'
 #     paginate_by = 5
 #     template_name = 'csnip/snippet/list.html'
+def snippet_share(request, snippet_id):
+    # Retrieve snippet by id
+    snippet = get_object_or_404(Snippet, id=snippet_id)
+    sent = False
+
+    if request.method == 'POST':
+        # Form was submitted
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            # Form fields passed validation
+            cd = form.cleaned_data
+            snippet_url = request.build_absolute_uri(snippet.get_absoulte_url())
+            subject = '{} ({}) wants to share snippet "{}"'.format(cd['name'], cd['email'], snippet.title)
+            message = 'Read "{}" at {}\n\n{}\'s comments: {}'.format(snippet.title, snippet_url, cd['name'], cd['comments'])
+            send_mail(subject, message, 'admin@csnip.com', [cd['to']])
+            sent = True
+    else:
+        form = EmailPostForm()
+    return render(request, 'csnip/snippet/share.html',{'snippet':snippet, 'form':form, 'sent':sent})
+
+
+
+
 
 def snippet_list(request):
     object_list = Snippet.published.all()

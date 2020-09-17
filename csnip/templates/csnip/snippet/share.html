@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Share a Snippet {% endblock %}
+
+{% block content %}
+  {% if sent %}
+    <h1>E-mail was sent Successfully.</h1>
+    <p>
+      "{{ snippet.title }}" was Successfully sent to {{ form.cleaned_data.to }}.
+    </p>
+  {% else %}
+    <h1>Share "{{ snippet.title }}" by email.</h1>
+    <hr>
+    <form class="" action="." method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="submit" name="" value="Send email">
+    </form>
+  {% endif %}
+{% endblock %}

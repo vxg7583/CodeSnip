@@ -10,6 +10,8 @@ urlpatterns = [
     path('<int:year>/<int:month>/<int:day>/<slug:snippet>/',\
          views.snippet_detail, name='snippet_detail'),
     path('create/', views.snippet_create, name='create'),
+    path('<int:snippet_id>/share/', views.snippet_share, name = 'snippet_share'),
+
 
 
 ]

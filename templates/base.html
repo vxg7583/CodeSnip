@@ -112,6 +112,7 @@
             <li><a class = "main-val" href = "{% url 'dashboard' %}"> Dashboard </a> </li>
             <li><b><code>Hello {{ request.user.first_name }}</code></b></li>
             <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'csnip:create' %}"><b>Create New Snippet</b></a>
             <!-- <li><a class = "main-val" href = "#"> Sign Up </a> </li> -->
           </ul>
         {% else %}
