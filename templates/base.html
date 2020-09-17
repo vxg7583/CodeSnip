@@ -110,7 +110,7 @@
             <li class="align-left"><a class = "logo" href = "{% url 'csnip:snippet_list' %}"> <b>CodeSnip</b> </a> </li>
 
             <li><a class = "main-val" href = "{% url 'dashboard' %}"> Dashboard </a> </li>
-            <li>Hello {{ request.user.first_name }}</li>
+            <li><b><code>Hello {{ request.user.first_name }}</code></b></li>
             <a href="{% url 'logout' %}">Logout</a>
             <!-- <li><a class = "main-val" href = "#"> Sign Up </a> </li> -->
           </ul>

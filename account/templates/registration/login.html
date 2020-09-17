@@ -17,6 +17,7 @@
           <input type="hidden" name="next" value="{{ next }}">
           <p><input type="submit" value="Sign-In"></p>
         </form>
+        <p><a href="{% url "password_reset" %}">Forgot password?</a></p>
 
       </div>
       {% block paginator %} {% endblock %}
