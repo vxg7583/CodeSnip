@@ -11,6 +11,9 @@ from django.utils.text import slugify
 import uuid
 from django.core.mail import send_mail
 from django.contrib.postgres.search import SearchVector
+from taggit.models import Tag
+from django.db.models import Count
+
 
 # uuid.uuid4().hex[:6].upper()
 
@@ -61,8 +64,15 @@ def snippet_share(request, snippet_id):
 
 
 
-def snippet_list(request):
+def snippet_list(request, tag_slug=None):
     object_list = Snippet.publishedd.all()
+    tag = None
+
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        object_list = object_list.filter(tags__in=[tag])
+
+
     paginator = Paginator(object_list,3)
     page = request.GET.get('page')
     try:
@@ -72,7 +82,7 @@ def snippet_list(request):
     except EmptyPage:
         snippets = paginator.page(paginator.num_pages)
 
-    return render(request, 'csnip/snippet/list.html', {'page':page,'snippets':snippets})
+    return render(request, 'csnip/snippet/list.html', {'page':page,'snippets':snippets, 'tag':tag})
 
 
 def snippet_detail(request, year, month, day, snippet):
@@ -91,7 +101,13 @@ def snippet_detail(request, year, month, day, snippet):
             new_comment.save()
     else:
         comment_form = CommentForm()
-    return render(request, 'csnip/snippet/detail.html', {'snippet':snippet,'comments':comments, 'new_comment':new_comment,'comment_form':comment_form})
+
+
+    # List of similar snippets
+    snippet_tags_ids = snippet.tags.values_list('id', flat=True)
+    similar_snippets = Snippet.publishedd.filter(tags__in=snippet_tags_ids).exclude(id=snippet.id)
+    similar_snippets = similar_snippets.annotate(same_tags=Count('tags')).order_by('-same_tags','-created')[:4]
+    return render(request, 'csnip/snippet/detail.html', {'snippet':snippet,'comments':comments, 'new_comment':new_comment,'comment_form':comment_form, 'similar_snippets':similar_snippets})
 
 
 

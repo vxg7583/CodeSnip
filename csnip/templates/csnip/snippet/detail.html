@@ -53,6 +53,15 @@
   Share this post</a>
 </p>
 
+<h2>Similar Snippets </h2>
+{% for snippet in similar_snippets %}
+  <p>
+    <a href="{{ snippet.get_absoulte_url }}">{{ snippet.title }}</a>
+  </p>
+{% empty %}
+  There are no similar snippets yet.
+{% endfor %}
+
 {% with comments.count as total_comments %}
   <h2>
     {{ total_comments }} comment {{ total_comments|pluralize }}

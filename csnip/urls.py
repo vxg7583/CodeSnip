@@ -7,6 +7,7 @@ urlpatterns = [
 
     # snippet views
     path('',views.snippet_list, name='snippet_list'),
+    path('tag/<slug:tag_slug>/', views.snippet_list, name='snippet_list_by_tag'),
     path('<int:year>/<int:month>/<int:day>/<slug:snippet>/',\
          views.snippet_detail, name='snippet_detail'),
     path('create/', views.snippet_create, name='create'),

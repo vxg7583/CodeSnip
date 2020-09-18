@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     'account',
     'csnip',
+    'taggit',
     'django.contrib.postgres',
     'django.contrib.admin',
     'django.contrib.auth',

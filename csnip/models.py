@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.conf import settings
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
@@ -25,6 +26,8 @@ class Snippet(models.Model):
     publishedd = SnippetManager()
     explanation = models.TextField(max_length=500, default='NO EXPLANATION')
     user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='snippets_liked',blank=True)
+    tags = TaggableManager()
+
 
     class Meta:
         ordering = ('-created',)

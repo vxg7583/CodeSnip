@@ -4,6 +4,9 @@
 
 {% block content %}
 <!-- <h1> Snippet List </h1> -->
+{% if tag %}
+  <h2>Posts tagged with "{{ tag.name }}"</h2>
+{% endif %}
 
 {% for snippet in snippets %}
       <div class="container-md">
@@ -12,7 +15,18 @@
         <div class="row">
           <div class="snipcard">
             <h4> <b><code>{{ snippet.title }}</code></b> </h4>
-            <br>
+
+            <b>
+              <p class="tags">Tags:
+              {% for tag in snippet.tags.all %}
+                <a href="{% url 'csnip:snippet_list_by_tag' tag.slug %}">
+                  {{ tag.name }}
+                </a>
+                {% if not forloop.last %}, {% endif %}
+              {% endfor %}
+              </p>
+            </b>
+
 
               <!-- <pre class="precode"> -->
 <pre class="precode">
@@ -38,4 +52,4 @@
 {% endfor %}
 
 {% endblock %}
-{% include "pagination.html" with page=page_obj %}
+{% include "pagination.html" with page=snippets %}
