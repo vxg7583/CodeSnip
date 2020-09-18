@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+
+{% block content %}
+  {% if query %}
+    <h1>Snippets containing "{{ query }}"</h1>
+    <h3>
+      {% with result.count as total_results %}
+        Found {{ total_results }} result {{ total_results|pluralize }}
+      {% endwith %}
+    </h3>
+    {% for snippet in results %}
+      <h4><a href="{{ snippet.get_absoulte_url }}">{{ snippet.title }}</a></h4>
+      {{ snippet.explanation|truncatewords:5 }}
+    {% empty %}
+      <p>There are no results for your query.</p>
+    {% endfor %}
+    <p><a href="{% url 'csnip:snippet_search' %}">Search Again</a></p>
+  {% else %}
+        <h1>Search for Snippets </h1>
+        <form class="" action="." method="get">
+          {{ form.as_p }}
+          <!-- {% csrf_token %} -->
+          <input type="submit" name="" value="Search">
+        </form>
+  {% endif %}
+{% endblock %}

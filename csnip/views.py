@@ -4,17 +4,36 @@ from django.core.paginator import Paginator, EmptyPage,\
                                     PageNotAnInteger
 
 from django.views.generic import ListView
-from .forms import SnippetCreateForm, EmailPostForm, CommentForm
+from .forms import SnippetCreateForm, EmailPostForm, CommentForm, SearchForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.text import slugify
 import uuid
 from django.core.mail import send_mail
+from django.contrib.postgres.search import SearchVector
 
 # uuid.uuid4().hex[:6].upper()
 
 
 # Create your views here.
+
+def snippet_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Snippet.objects.annotate(search=SearchVector('title','body'),).filter(search=query)
+
+    return render(request, 'csnip/snippet/search.html', {'form':form, 'query':query, 'results':results})
+
+
+
+
+
+
 # class SnippetListView(ListView):
 #     queryset = Snippet.published.all()
 #     context_object_name = 'snippets'
