@@ -25,7 +25,7 @@ def snippet_search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            results = Snippet.objects.annotate(search=SearchVector('title','body'),).filter(search=query)
+            results = Snippet.publishedd.annotate(search=SearchVector('title','body'),).filter(search=query)
 
     return render(request, 'csnip/snippet/search.html', {'form':form, 'query':query, 'results':results})
 
@@ -62,7 +62,7 @@ def snippet_share(request, snippet_id):
 
 
 def snippet_list(request):
-    object_list = Snippet.published.all()
+    object_list = Snippet.publishedd.all()
     paginator = Paginator(object_list,3)
     page = request.GET.get('page')
     try:

@@ -7,9 +7,10 @@ from django.conf import settings
 # Create your models here.
 
 
-# class SnippetManager(models.Manager):
-#     def get_queryset(self):
-#         return super(SnippetManager, self).get_queryset().filter()
+class SnippetManager(models.Manager):
+
+    def get_queryset(self):
+        return super(SnippetManager, self).get_queryset().filter()
 
 
 class Snippet(models.Model):
@@ -21,7 +22,7 @@ class Snippet(models.Model):
     updated = models.DateTimeField(auto_now = True)
     slug = models.SlugField(max_length=300, unique=True)
     author = models.CharField(user, max_length=500)
-    # published = SnippetManager()
+    publishedd = SnippetManager()
     explanation = models.TextField(max_length=500, default='NO EXPLANATION')
     user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='snippets_liked',blank=True)
 
