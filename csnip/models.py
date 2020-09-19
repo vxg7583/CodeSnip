@@ -28,17 +28,17 @@ class Snippet(models.Model):
     user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='snippets_liked',blank=True)
     tags = TaggableManager()
 
-
+    def get_absolute_url(self):
+        return reverse('csnip:snippet_detail', args=[self.created.year, \
+                                                    self.created.month,\
+                                                    self.created.day,self.slug])
     class Meta:
         ordering = ('-created',)
 
     def __str__(self):
         return self.title
 
-    def get_absoulte_url(self):
-        return reverse('csnip:snippet_detail', args=[self.created.year, \
-                                                    self.created.month,\
-                                                    self.created.day,self.slug])
+
 
 
 class Comment(models.Model):

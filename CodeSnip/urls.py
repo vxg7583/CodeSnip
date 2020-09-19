@@ -15,11 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+from csnip.sitemaps import SnippetSitemap
+
+
+sitemaps = {
+    'snippets': SnippetSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('csnip/', include('csnip.urls', namespace='csnip')),
-    path('', include('csnip.urls')),
+    path('', include('csnip.urls', namespace='csnip2')),
     path('account/', include('account.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
+
 
 ]
