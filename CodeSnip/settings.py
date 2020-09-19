@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'account',
     'csnip',
     'taggit',
+    'ckeditor',
     'django.contrib.postgres',
     'django.contrib.admin',
     'django.contrib.auth',

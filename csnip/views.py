@@ -133,7 +133,7 @@ def snippet_create(request):
 
             # redirect to newly created item detail view
             # try:
-            return redirect(new_item.get_absoulte_url())
+            return redirect(new_item.get_absolute_url())
             # except:
 
 

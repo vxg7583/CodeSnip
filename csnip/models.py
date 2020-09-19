@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.conf import settings
 from taggit.managers import TaggableManager
-
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 
@@ -17,7 +17,7 @@ class SnippetManager(models.Manager):
 class Snippet(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='snippets_created', on_delete=models.CASCADE)
     title = models.TextField(max_length = 30)
-    body = models.TextField()
+    body = RichTextField(blank=True, null=True)
     publish = models.DateTimeField(default = timezone.now)
     created = models.DateTimeField(auto_now_add = True)
     updated = models.DateTimeField(auto_now = True)
