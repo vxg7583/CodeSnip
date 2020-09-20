@@ -56,12 +56,13 @@
 <div class="likes">
 {% with total_likes=snippet.user_like.count user_like=snippet.user_like.all %}
 
-    <span>
-      <span class="total">{{ total_likes }} likes</span>
+    <span class="count">
+      <span class="total">{{ total_likes }}</span>
+      like {{ total_likes|pluralize }}
       <!-- {{ total_likes }} likes -->
     </span>
     <a href="#" data-id="{{ snippet.id }}" id = "{{ snippet.id }}"
-      data-action="{% if request.user in user_like %}un{% endif %}like" class="like button">
+      data-action="{% if request.user in user_like %}un{% endif %}like" class="like">
 
       {% if request.user not in user_like %}
         like
@@ -144,9 +145,9 @@
 
         $('a.like').text(previous_action == 'like' ? 'unlike' : 'like');
 
-
         var previous_likes = parseInt($('span.count .total').text());
         $('span.count .total').text(previous_action == 'like' ? previous_likes + 1 : previous_likes - 1);
+
       }
     });
   });

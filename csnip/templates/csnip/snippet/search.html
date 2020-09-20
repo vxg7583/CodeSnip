@@ -10,7 +10,7 @@
       {% endwith %}
     </h3>
     {% for snippet in results %}
-      <h4><a href="{{ snippet.get_absoulte_url }}">{{ snippet.title }}</a></h4>
+      <h4><a href="{{ snippet.get_absolute_url }}">{{ snippet.title }}</a></h4>
       {{ snippet.explanation|truncatewords:5 }}
     {% empty %}
       <p>There are no results for your query.</p>
@@ -24,4 +24,6 @@
           <input type="submit" name="" value="Search">
         </form>
   {% endif %}
+{% block paginator %}{% endblock %}
+{% block footer %} {% endblock %}
 {% endblock %}
