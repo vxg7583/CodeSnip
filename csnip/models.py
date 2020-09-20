@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.conf import settings
 from taggit.managers import TaggableManager
 from ckeditor.fields import RichTextField
+
+
 # Create your models here.
 
 

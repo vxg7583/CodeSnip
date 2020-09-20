@@ -13,6 +13,8 @@ from django.core.mail import send_mail
 from django.contrib.postgres.search import SearchVector
 from taggit.models import Tag
 from django.db.models import Count
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 
 
 # uuid.uuid4().hex[:6].upper()
@@ -142,3 +144,22 @@ def snippet_create(request):
         form = SnippetCreateForm()
 
     return render(request, 'csnip/snippet/create.html',{'section':'snippet', 'form':form})
+
+
+@login_required
+@require_POST
+def snip_like(request):
+    snip_id = request.POST.get('id')
+    action = request.POST.get('action')
+    if snip_id and action:
+        try:
+            snippet = Snippet.publishedd.get(id=snip_id)
+            # create_action(request.user, 'likes', image)
+            if action == 'like':
+                snippet.user_like.add(request.user)
+            else:
+                snippet.user_like.remove(request.user)
+            return JsonResponse({'status':'ok'})
+        except:
+            pass
+    return JsonResponse({'status':'ko'})

@@ -53,6 +53,26 @@
   Share this post</a>
 </p>
 
+<div class="likes">
+{% with total_likes=snippet.user_like.count user_like=snippet.user_like.all %}
+
+    <span>
+      <span class="total">{{ total_likes }} likes</span>
+      <!-- {{ total_likes }} likes -->
+    </span>
+    <a href="#" data-id="{{ snippet.id }}"
+      data-action="{% if request.user in user_like %}un{% endif %}like" class="like button">
+
+      {% if request.user not in user_like %}
+        like
+      {% else %}
+        unlike
+      {% endif %}
+    </a>
+{% endwith %}
+
+</div>
+
 <h2>Similar Snippets </h2>
 {% for snippet in similar_snippets %}
   <p>
@@ -61,6 +81,8 @@
 {% empty %}
   There are no similar snippets yet.
 {% endfor %}
+
+
 
 {% with comments.count as total_comments %}
   <h2>
@@ -104,6 +126,31 @@
 {% block footer %}{% endblock %}
 {% endblock %}
 
+{% block domready %}
+
+  $('a.like').click(function(e){
+    e.preventDefault();
+    $.post('{% url 'csnip:like' %}',
+    {
+      id:$(this).data('id'),
+      action: $(this).data('action')
+    },
+    function(data){
+      if (data['status'] == 'ok'){
+        var previous_action = $('a.like').data('action');
+
+        $('a.like').data('action', previous_action == 'like' ? 'unlike' : 'like');
+
+
+        $('a.like').text(previous_action == 'like' ? 'unlike' : 'like');
+
+
+        var previous_likes = parseInt($('span.count .total').text());
+        $('span.count .total').text(previous_action == 'like' ? previous_likes + 1 : previous_likes - 1);
+      }
+    });
+  });
+{% endblock %}
 
 <!-- <hr>
 <footer class="p-new"> <b>&#169; <code>A Vikrant Gawde Production</code> 2020</b></footer> -->
