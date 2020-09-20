@@ -98,22 +98,22 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
   <script type="text/javascript">
-    $(document).ready(function(){
-      var csrftoken = Cookies.get('csrftoken');
-      function csrfSafeMethod(method){
+  var csrftoken = Cookies.get('csrftoken');
+      function csrfSafeMethod(method) {
         // these HTTP methods do not require CSRF protection
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method))
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
       }
       $.ajaxSetup({
-        beforeSend:: function(xhr, settings){
+        beforeSend: function(xhr, settings) {
           if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
           }
         }
       });
-      {% block domready %}
-      {% endblock %}
-    });
+      $(document).ready(function(){
+        {% block domready %}
+        {% endblock %}
+         });
   </script>
 
   </head>

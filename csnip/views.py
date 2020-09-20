@@ -148,7 +148,9 @@ def snippet_create(request):
 
 @login_required
 @require_POST
+
 def snip_like(request):
+
     snip_id = request.POST.get('id')
     action = request.POST.get('action')
     if snip_id and action:

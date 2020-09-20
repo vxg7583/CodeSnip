@@ -60,7 +60,7 @@
       <span class="total">{{ total_likes }} likes</span>
       <!-- {{ total_likes }} likes -->
     </span>
-    <a href="#" data-id="{{ snippet.id }}"
+    <a href="#" data-id="{{ snippet.id }}" id = "{{ snippet.id }}"
       data-action="{% if request.user in user_like %}un{% endif %}like" class="like button">
 
       {% if request.user not in user_like %}
