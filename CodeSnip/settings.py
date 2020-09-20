@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -29,6 +30,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 SITE_ID = 1
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +42,7 @@ INSTALLED_APPS = [
     'csnip',
     'taggit',
     'ckeditor',
+    'sorl.thumbnail',
     'django.contrib.postgres',
     'django.contrib.admin',
     'django.contrib.auth',
