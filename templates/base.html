@@ -1,182 +1,114 @@
 {% load static %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/> -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta name = "viewport" charset="utf-8" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <title>{% block title %} Welcome to CodeSnips {% endblock %}</title>
+
+    <title>{% block title %} Welcome to CodeSnip !{% endblock %}</title>
+
     <style>
 
-    .logo {
-      /* border-style:dotted; */
-
-      border-radius: 20px;
-      margin: auto;
-      padding: 9px;
-      border-width:2px;
-      text-align:left;
-      background-color: black;
-      /* position:absolute; */
-
-    }
-        h4 {
-          text-align: center;
-
-
-        }
-        p {
-          text-align: justify;
-        }
-
-        .p-new{
-          text-align:center;
-        }
-        .snipcard {
-          width: 400px;
-          height: 300px;
-          border: 1px groove #ccc;
-          border-radius: 30px;
-          margin: auto;
-          padding: 4px;
-          /* border-style:dotted; */
 
 
 
-        }
+    </style>
 
 
 
-        li{
-          display: inline-block;
-
-        }
-
-        .nav-ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background-color: white;
-          text-align:center;
-          text-color:black;
-        }
-        li a {
-          display: block;
-          color: white;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-        }
-        .main-val {
-                  color: black;
-                  text-align:right;
-              }
-        .logo_li {text-align:left;}
-
-        .precode{
-          height:150px;
-          background-color:white;
-          border:hidden;
-
-        }
-
-        #cont {
-          /* border: 0.5px groove #ccc; */
-          display: flex;
-          justify-content: center;
-          border-radius: 30px;
-
-
-
-        }
-
-
-  </style>
-
-
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-  <script type="text/javascript">
-  var csrftoken = Cookies.get('csrftoken');
-      function csrfSafeMethod(method) {
-        // these HTTP methods do not require CSRF protection
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-      }
-      $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        }
-      });
-      $(document).ready(function(){
-        {% block domready %}
-        {% endblock %}
-         });
-  </script>
 
   </head>
 
 
   <body>
+
+
+
+
     <!-- Nav bar div starts -->
-
-    <div class="container-fluid">
-
-
-    <nav class= "navbar bgnavbar-dark navbar-fixed-top">
+    <nav class= "navbar navbar-expand-sm bg-light navbar-light justify-content-center">
       {% if request.user.is_authenticated %}
 
-          <ul class = "nav-ul">
-            <li class="align-left"><a class = "logo" href = "{% url 'csnip:snippet_list' %}"> <b>CodeSnip</b> </a> </li>
+          <ul class = "navbar-nav">
 
-            <li><a class = "main-val" href = "{% url 'user_detail' user.username %}"> User Detail </a> </li>
-            <li><b><code>Hello {{ request.user.first_name }}</code></b></li>
-            <a href="{% url 'logout' %}">Logout</a>
-            <a href="{% url 'csnip:create' %}"><b>Create New Snippet</b></a>
-            <li{% if section == "people" %}class="selected"{% endif %}>
-              <a href="{% url 'user_list' %}">People</a>
+            <li class="nav-item"><a class = "nav-link" href = "{% url 'csnip:snippet_list' %}"> CodeSnip </a> </li>
+
+            <li class="nav-item active"><a class = "nav-link" href = "{% url 'user_detail' user.username %}"> Snipper Dashboard </a> </li>
+            <!-- <li class="nav-item"><a class = "nav-link"> Hello {{ request.user.first_name }}</a></li> -->
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="{% url 'csnip:create' %}">Create New Snippet</a></li> -->
+            <li{% if section == "people" %}class="selected nav-item"{% endif %}>
+              <a class="nav-link" href="{% url 'user_list' %}">People</a>
             </li>
-            <!-- <li><a class = "main-val" href = "#"> Sign Up </a> </li> -->
-          </ul>
-        {% else %}
-
-          <ul class = "nav-ul">
-            <li class="align-left"><a class = "logo" href = "{% url 'csnip:snippet_list' %}"> <b>CodeSnip</b> </a> </li>
-
-            <li><a class = "main-val" href = "{% url 'login' %}"> Login </a> </li>
-            <li><a class = "main-val" href = "{% url 'register' %}"> Sign Up </a> </li>
 
           </ul>
-        {% endif %}
+
+          <form class="form-inline my-2 my-lg-0 ml-auto">
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+          </form>
+
+      {% else %}
+
+          <ul class = "navbar-nav">
+            <li class="nav-item"><a class = "nav-link" href = "{% url 'csnip:snippet_list' %}"> CodeSnip</a> </li>
+
+            <li class="nav-item"><a class = "nav-link" href = "{% url 'login' %}"> Login </a> </li>
+            <li class="nav-item"><a class = "nav-link" href = "{% url 'register' %}"> Sign Up </a> </li>
+
+          </ul>
+
+      {% endif %}
 
     </nav>
 
 
-  </div>
   <!-- Nav Bar div ends -->
-  <!-- <hr style="height:0.5px;border:none;background-color:#333;"/> -->
-  <br>
-  <br>
-  <br>
-  <br>
-  <!-- Main div starts -->
 
-  <!-- Main div starts -->
-{% block content %}
+    {% block content %}
 
-  <!-- Main div ends -->
-{% endblock %}
+
+    {% endblock %}
+
   </body>
-{% block paginator %}
-<div class="text-center d-flex justify-content-center">
-  <b>{% include "pagination.html" with page=snippets %}</b>
-</div>
-{% endblock %}
-<hr>
-{% block footer %}
-<footer class="p-new"> <b>&#169; <code>A Vikrant Gawde Production</code> 2020</b></footer>
-{% endblock %}
+
+    {% block paginator %}
+    <div class="text-center d-flex justify-content-center">
+      <b>{% include "pagination.html" with page=snippets %}</b>
+    </div>
+    {% endblock %}
+
+
+    {% block footer %}
+
+    {% endblock %}
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type="text/javascript">
+    var csrftoken = Cookies.get('csrftoken');
+        function csrfSafeMethod(method) {
+          // these HTTP methods do not require CSRF protection
+          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+          }
+        });
+        $(document).ready(function(){
+          {% block domready %}
+          {% endblock %}
+           });
+    </script>
+
 
 </html>

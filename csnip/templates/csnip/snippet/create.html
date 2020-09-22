@@ -2,10 +2,20 @@
 
 {% block content %}
 <form class="" action="." method="post">
-  {{ form.as_p }}
-  {{ form.media }}
-  {% csrf_token %}
-  <input type="submit" name="" value="Create your Snippet">
+
+    <b>Title</b>
+    <br>
+    {{ form.title }}
+
+
+
+    {{ form.media }}
+    {% csrf_token %}
+    <br>
+    <input type="submit" name="" value="Create your Snippet">
+
+
+
 </form>
 {% block paginator %}{% endblock %}
 {% endblock %}
