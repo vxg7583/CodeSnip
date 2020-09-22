@@ -1,3 +1,5 @@
+<meta name = "viewport" charset="utf-8" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 {% extends "base.html" %}
 
 
@@ -8,152 +10,40 @@
     text-align:left;
   }
 </style>
-    <!-- Nav bar div starts -->
-    <div class="container-fluid">
 
-
-
-
-
-  </div>
-  <!-- Nav Bar div ends -->
-  <hr style="height:0.5px;border:none;background-color:#333;"/>
+  <!-- <hr style="height:0.5px;border:none;background-color:#333;"/> -->
 
   <!-- Main div starts -->
-  <div class="container-md">
 
 
-    <div class="row">
-      <div class="snipcard">
+
         <h4> <code>{{ snippet.title }} </code> </h4>
         <br>
 
-          <!-- <pre class="precode"> -->
-<pre class="precode">
-{{ snippet.body|safe }}
-</pre>
-          <!-- </pre> -->
-
-          <!-- <hr> -->
-          <!-- <a href="#" id="cont">Open Snippet</a> -->
-
-          </div>
-          <br>
+<div class="row">
 
 
+      <div class="col-md-6">
 
-</div>
-<p class = "lefttext">{{ snippet.explanation }}</p>
+
+        <pre class="precode">
+        {{ snippet.body|safe }}
+        </pre>
+      </div>
+      <div class="col-md-6">
+
+
+        <b>{{ snippet.explanation|safe }}</b>
 
       </div>
-  <!-- Main div ends -->
-<br>
-<p>
-  <a href="{% url 'csnip:snippet_share' snippet.id %}">
-  Share this post</a>
-</p>
-
-<div class="likes">
-{% with total_likes=snippet.user_like.count user_like=snippet.user_like.all %}
-
-    <span class="count">
-      <span class="total">{{ total_likes }}</span>
-      like {{ total_likes|pluralize }}
-      <!-- {{ total_likes }} likes -->
-    </span>
-    <a href="#" data-id="{{ snippet.id }}" id = "{{ snippet.id }}"
-      data-action="{% if request.user in user_like %}un{% endif %}like" class="like">
-
-      {% if request.user not in user_like %}
-        like
-      {% else %}
-        unlike
-      {% endif %}
-    </a>
-{% endwith %}
-
 </div>
 
-<h2>Similar Snippets </h2>
-{% for snippet in similar_snippets %}
-  <p>
-    <a href="{{ snippet.get_absoulte_url }}">{{ snippet.title }}</a>
-  </p>
-{% empty %}
-  There are no similar snippets yet.
-{% endfor %}
 
 
 
-{% with comments.count as total_comments %}
-  <h2>
-    {{ total_comments }} comment {{ total_comments|pluralize }}
-  </h2>
-{% endwith %}
-
-{% for comment in comments %}
-  <div class="comment">
-    <p class="info">
-      Comment {{ forloop.counter }} by {{ comment.name }}
-      {{ comment.created }}
-    </p>
-    {{ comment.body|linebreaks }}
-
-  </div>
-{% empty %}
-    <p>There are no comments yet.</p>
-{% endfor %}
-
-{% if new_comment %}
-  <h2>Your comment has been added. </h2>
-  <h2>Add Another one?</h2>
-  <form class="" action="." method="post">
-    {{ comment_form.as_p }}
-    {% csrf_token %}
-    <p><input type="submit" name="" value="Add comment"></p>
-  </form>
-{% else %}
-  <h2>Add a new comment </h2>
-  <form class="" action="." method="post">
-    {{ comment_form.as_p }}
-    {% csrf_token %}
-    <p><input type="submit" name="" value="Add comment"></p>
-  </form>
-{% endif %}
 
 
 
-{% block paginator %}{% endblock %}
-{% block footer %}{% endblock %}
+
+{% block paginator %} {% endblock %}
 {% endblock %}
-
-{% block domready %}
-
-  $('a.like').click(function(e){
-    e.preventDefault();
-    $.post('{% url 'csnip:like' %}',
-    {
-      id:$(this).data('id'),
-      action: $(this).data('action')
-    },
-    function(data){
-      if (data['status'] == 'ok'){
-        var previous_action = $('a.like').data('action');
-
-        $('a.like').data('action', previous_action == 'like' ? 'unlike' : 'like');
-
-
-        $('a.like').text(previous_action == 'like' ? 'unlike' : 'like');
-
-        var previous_likes = parseInt($('span.count .total').text());
-        $('span.count .total').text(previous_action == 'like' ? previous_likes + 1 : previous_likes - 1);
-
-      }
-    });
-  });
-{% endblock %}
-
-<!-- <hr>
-<footer class="p-new"> <b>&#169; <code>A Vikrant Gawde Production</code> 2020</b></footer> -->
-
-<!-- </html> -->

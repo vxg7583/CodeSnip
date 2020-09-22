@@ -14,6 +14,7 @@ urlpatterns = [
     path('<int:snippet_id>/share/', views.snippet_share, name = 'snippet_share'),
     path('search/', views.snippet_search, name='snippet_search'),
     path('like/', views.snip_like, name='like'),
+    path('delete/', views.snip_remove, name='remove'),
 
 
 

@@ -1,26 +1,37 @@
+<meta name = "viewport" charset="utf-8" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 {% extends "base.html" %}
 
 {% block title %} Welcome to CodeSnips! {% endblock %}
-<style media="screen">
-  .precode{
-    height:30px;
-    width:50px;
-    overflow:hidden;
-  }
-</style>
-{% block content %}
 
+{% block content %}
+<style media="screen">
+  .pree {
+    /* overflow:hidden; */
+    background:white;
+    height:400px;
+    width:600px;
+    text-align:left;
+    border:dotted;
+
+  }
+  .tags{
+    text-align:center;
+  }
+
+</style>
 <!-- <h1> Snippet List </h1> -->
 {% if tag %}
   <h2>Posts tagged with "{{ tag.name }}"</h2>
 {% endif %}
 
 {% for snippet in snippets %}
-      <div align="center">
+      <div align="center" class="main-div">
 
 
 
-            <h4> <b><code>{{ snippet.title }}</code></b> </h4>
+            <h4> <b>{{ snippet.title }}</b> </h4>
 
             <b>
               <p class="tags">Tags:
@@ -36,19 +47,25 @@
 
               <!-- <pre class="precode"> -->
 
-          <pre>  <p class="precode">
-            {{ snippet.body|safe }}
-            </p></pre>
+            <pre class='pree'>
+
+                {{ snippet.body|safe }}
 
 
 
-              <hr>
-              <a href="{{ snippet.get_absolute_url }}" id="cont"><b>Open Snippet</b></a>
+            </pre>
+            <a href="{{ snippet.get_absolute_url }}" id="cont"><b>Open Snippet</b></a>
 
 
 
 
-          </div>
+
+
+
+
+
+          <hr>
+      </div>
       <!-- Main div ends -->
 
 <br>

@@ -145,10 +145,15 @@ def snippet_create(request):
 
     return render(request, 'csnip/snippet/create.html',{'section':'snippet', 'form':form})
 
+@login_required
+def snip_remove(request):
+    snip_id = request.POST.get('id')
+    snip_id.remove()
+    return render(request, 'csnip/snippet/delete.html') 
+
 
 @login_required
 @require_POST
-
 def snip_like(request):
 
     snip_id = request.POST.get('id')
