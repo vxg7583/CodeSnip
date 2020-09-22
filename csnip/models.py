@@ -18,7 +18,7 @@ class SnippetManager(models.Manager):
 
 class Snippet(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='snippets_created', on_delete=models.CASCADE)
-    title = models.TextField(max_length = 30)
+    title = models.CharField(max_length = 100)
     body = RichTextField(blank=True, null=True)
     publish = models.DateTimeField(default = timezone.now)
     created = models.DateTimeField(auto_now_add = True)
@@ -26,7 +26,7 @@ class Snippet(models.Model):
     slug = models.SlugField(max_length=300, unique=True)
     author = models.CharField(user, max_length=500)
     publishedd = SnippetManager()
-    explanation = models.TextField(max_length=500, default='NO EXPLANATION')
+    explanation = RichTextField(blank=True, null=True)
     user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='snippets_liked',blank=True)
     tags = TaggableManager()
 

@@ -22,7 +22,7 @@
   </head>
 
 
-  <body>
+  <body align="center">
 
 
 
@@ -41,6 +41,9 @@
             <!-- <li class="nav-item"><a class="nav-link" href="{% url 'csnip:create' %}">Create New Snippet</a></li> -->
             <li{% if section == "people" %}class="selected nav-item"{% endif %}>
               <a class="nav-link" href="{% url 'user_list' %}">People</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'csnip:create' %}">Create Snip</a>
             </li>
 
           </ul>
@@ -64,15 +67,19 @@
 
     </nav>
 
+    <div>
 
+
+        {% block content %}
+
+
+        {% endblock %}
+
+    </div>
   <!-- Nav Bar div ends -->
 
-    {% block content %}
-
-
-    {% endblock %}
-
   </body>
+
 
     {% block paginator %}
     <div class="text-center d-flex justify-content-center">

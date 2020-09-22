@@ -8,6 +8,9 @@ class SnippetCreateForm(forms.ModelForm):
     class Meta:
         model = Snippet
         fields = ('title','body','explanation')
+        widgets = { 'title': forms.TextInput(attrs={'size': 102}), 'body': forms.TextInput(attrs={'size':30})}
+        # widget=forms.TextInput(attrs={'size':'30','maxlength':'100'})
+
 
     # def save(self, force_insert=False, force_update=False, commit=True):
     #     snippet = super(SnippetCreateForm, self).save(commit=False)

@@ -1,21 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form class="" action="." method="post">
+<style media="screen">
+  .form-main-div{
+    border: 1px dotted black;
+    background-color: white;
+    text-align: center;
+    height:1300px;
+    overflow:hidden;
+  }
+</style>
 
-    <b>Title</b>
-    <br>
-    {{ form.title }}
-
-
-
-    {{ form.media }}
-    {% csrf_token %}
-    <br>
-    <input type="submit" name="" value="Create your Snippet">
-
+<div class="form-main-div" align="center">
 
 
-</form>
+    <form class="smle" action="." method="post">
+      <p> <b>Please Enter Title </b></p>
+
+
+
+
+      {{ form.title }}
+
+      <br>
+      <br>
+      <br>
+      <p> <b><em>Please Paste Code Snip</em></b></p>
+
+      {{ form.body }}
+      <p> Please Explain your code snip </p>
+
+      {{ form.explanation }}
+
+
+        {{ form.media }}
+        {% csrf_token %}
+        <br>
+        <input type="submit" name="" value="Create your Snippet">
+
+
+
+    </form>
+</div>
 {% block paginator %}{% endblock %}
 {% endblock %}

@@ -1,19 +1,25 @@
 {% extends "base.html" %}
 
 {% block title %} Welcome to CodeSnips! {% endblock %}
-
+<style media="screen">
+  .precode{
+    height:30px;
+    width:50px;
+    overflow:hidden;
+  }
+</style>
 {% block content %}
+
 <!-- <h1> Snippet List </h1> -->
 {% if tag %}
   <h2>Posts tagged with "{{ tag.name }}"</h2>
 {% endif %}
 
 {% for snippet in snippets %}
-      <div class="container-md">
+      <div align="center">
 
 
-        <div class="row">
-          <div class="snipcard">
+
             <h4> <b><code>{{ snippet.title }}</code></b> </h4>
 
             <b>
@@ -29,19 +35,17 @@
 
 
               <!-- <pre class="precode"> -->
-<pre class="precode">
-{{ snippet.body|safe }}
-</pre>
-              <!-- </pre> -->
+
+          <pre>  <p class="precode">
+            {{ snippet.body|safe }}
+            </p></pre>
+
+
 
               <hr>
               <a href="{{ snippet.get_absolute_url }}" id="cont"><b>Open Snippet</b></a>
 
-              </div>
 
-
-
-            </div>
 
 
           </div>
