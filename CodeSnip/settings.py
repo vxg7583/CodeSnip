@@ -34,6 +34,8 @@ SITE_ID = 1
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
 }
+
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
 # Application definition
 
 INSTALLED_APPS = [
