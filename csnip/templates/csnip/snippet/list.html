@@ -23,8 +23,10 @@
 </style>
 <!-- <h1> Snippet List </h1> -->
 {% if tag %}
-  <h2>Posts tagged with "{{ tag.name }}"</h2>
+  <h3 align="center">Snippets tagged with <b>'{{ tag.name }}'</b></h3>
 {% endif %}
+
+<br>
 
 {% for snippet in snippets %}
       <div align="center" class="main-div">
