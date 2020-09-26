@@ -113,6 +113,15 @@ def snippet_detail(request, year, month, day, snippet):
     return render(request, 'csnip/snippet/detail.html', {'snippet':snippet,'comments':comments, 'new_comment':new_comment,'comment_form':comment_form, 'similar_snippets':similar_snippets})
 
 
+@login_required
+def snippet_delete(request, snip_id):
+    '''
+    User wants to delete an existing snippet
+    '''
+    snip_d = get_object_or_404(Snippet, id=snip_id)
+    snip_d.delete()
+    return render(request, 'csnip/snippet/delete.html')
+
 
 
 
@@ -131,7 +140,12 @@ def snippet_create(request):
             new_item.slug = slugify(s)
             # assign current user to the snippet
             new_item.user = request.user
+            # s_tags = form.cleaned_data['tags']
+            # new_item.tags.add(*s_tags )
             new_item.save()
+            form.save_m2m()
+
+
             messages.success(request, "Snippet Added Successfully")
 
             # redirect to newly created item detail view
@@ -146,11 +160,7 @@ def snippet_create(request):
 
     return render(request, 'csnip/snippet/create.html',{'section':'snippet', 'form':form})
 
-@login_required
-def snip_remove(request):
-    snip_id = request.POST.get('id')
-    snip_id.remove()
-    return render(request, 'csnip/snippet/delete.html')
+
 
 
 @login_required

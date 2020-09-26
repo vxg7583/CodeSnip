@@ -3,12 +3,14 @@ from django.core.files.base import ContentFile
 from django import forms
 from .models import Snippet, Comment
 from django.utils.text import slugify
+from taggit.forms import *
 
 class SnippetCreateForm(forms.ModelForm):
     class Meta:
         model = Snippet
-        fields = ('title','body','explanation')
-        widgets = { 'title': forms.TextInput(attrs={'size': 102}), 'body': forms.TextInput(attrs={'size':30})}
+        fields = ('title','body','explanation','tags')
+        widgets = { 'title': forms.TextInput(attrs={'size': 100})}
+
         # widget=forms.TextInput(attrs={'size':'30','maxlength':'100'})
 
 
