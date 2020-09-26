@@ -33,6 +33,7 @@ def snippet_search(request):
             results = Snippet.publishedd.annotate(search=SearchVector('title','body'),).filter(search=query)
 
     return render(request, 'csnip/snippet/search.html', {'form':form, 'query':query, 'results':results})
+    # return render(request, 'base.html', {'form':form, 'query':query, 'results':results})
 
 
 
@@ -149,7 +150,7 @@ def snippet_create(request):
 def snip_remove(request):
     snip_id = request.POST.get('id')
     snip_id.remove()
-    return render(request, 'csnip/snippet/delete.html') 
+    return render(request, 'csnip/snippet/delete.html')
 
 
 @login_required

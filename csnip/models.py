@@ -18,7 +18,7 @@ class SnippetManager(models.Manager):
 
 class Snippet(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='snippets_created', on_delete=models.CASCADE)
-    title = models.CharField(max_length = 200)
+    title = models.CharField(max_length = 200, verbose_name="")
     body = RichTextField()
     publish = models.DateTimeField(default = timezone.now)
     created = models.DateTimeField(auto_now_add = True)

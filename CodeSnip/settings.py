@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'account',
     'csnip',
     'taggit',
+    'crispy_forms',
     'ckeditor',
     'sorl.thumbnail',
     'social_django',
@@ -59,6 +60,56 @@ INSTALLED_APPS = [
 
 
 ]
+        # 'toolbar_YourCustomToolbarConfig': [
+        #     {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
+        #     {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+        #     {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+        #     {'name': 'forms',
+        #      'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+        #                'HiddenField']},
+        #     '/',
+        #     {'name': 'basicstyles',
+        #      'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+        #     {'name': 'paragraph',
+        #      'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+        #                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+        #                'Language']},
+        #     {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+        #     {'name': 'insert',
+        #      'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+        #     '/',
+        #     {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+        #     {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+        #     {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+        #     {'name': 'about', 'items': ['About']},
+        #     '/',  # put this to force next toolbar on new line
+        #     {'name': 'yourcustomtools', 'items': [
+        #         # put the name of your editor.ui.addButton here
+        #         'Preview',
+        #         'Maximize',
+
+            # ]},
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            ['Undo', 'Redo',
+             '-', 'Bold', 'Italic', 'Underline',
+             '-', 'Link', 'Unlink', 'Anchor',
+             '-', 'Format',
+             '-', 'SpellChecker', 'Scayt',
+             '-', 'Maximize',
+             '-', 'Language',
+             '-', 'Smiley',
+            ],
+            ['RemoveFormat', 'Source'],
+        ],
+        'height': 600,
+        'width': 400,
+        'toolbarCanCollapse': False,
+    },
+}
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

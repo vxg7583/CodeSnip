@@ -1,13 +1,24 @@
 {% extends "base.html" %}
 {% block title %} Create an account {% endblock %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-  <h1>Create an account </h1>
-  <p>Please sign up using the following form:</p>
-  <form class="" action="." method="post">
-    {{ user_form.as_p }}
-    {% csrf_token %}
-    <p><input type="submit" name="" value="Create my account"></p>
-  </form>
+  <style media="screen">
 
+  </style>
+
+<div class="container">
+
+  <h1>Create an account </h1>
+  <p><b>Please sign up using the following form:</b></p>
+  <br>
+  <br>
+  <form class="" action="." method="post">
+    {{ user_form|crispy }}
+    {% csrf_token %}
+    <!-- <p><input type="submit" name="" value="Create my account"></p>
+   -->
+   <button type="submit" class = "btn btn-success" name="button">Register</button>
+  </form>
+</div>
+{% block paginator %}{% endblock %}
 {% endblock %}
