@@ -12,9 +12,10 @@ import uuid
 from django.core.mail import send_mail
 from django.contrib.postgres.search import SearchVector
 from taggit.models import Tag
-from django.db.models import Count
+from django.db.models import Count, F
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.contrib.postgres.search import SearchQuery, SearchRank
 
 
 # uuid.uuid4().hex[:6].upper()
@@ -30,7 +31,20 @@ def snippet_search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            results = Snippet.publishedd.annotate(search=SearchVector('title','body'),).filter(search=query)
+            # search_query = SearchQuery(query)
+            # search_vector = (F('explanation_vector'))
+            # results = Snippet.publishedd.annotate(search=SearchVector('title','body','explanation'),).filter(search=query)
+
+            results = Snippet.publishedd.annotate(
+                rank=SearchRank(
+                    F('title_vector'),
+                    SearchQuery(query)
+                )
+            )
+
+            results = results.filter(rank__gte=0.03).order_by('-rank')
+            # print(results[1])
+            # print(results[1].rank)
 
     return render(request, 'csnip/snippet/search.html', {'form':form, 'query':query, 'results':results})
     # return render(request, 'base.html', {'form':form, 'query':query, 'results':results})

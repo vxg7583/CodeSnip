@@ -5,7 +5,8 @@ from django.urls import reverse
 from django.conf import settings
 from taggit.managers import TaggableManager
 from ckeditor.fields import RichTextField
-
+from django.contrib.postgres.search import SearchVectorField
+from django.contrib.postgres.indexes import GinIndex
 
 # Create your models here.
 
@@ -29,13 +30,20 @@ class Snippet(models.Model):
     explanation = RichTextField()
     user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='snippets_liked',blank=True)
     tags = TaggableManager()
+    title_vector = SearchVectorField(null=True)
+    explanation_vector = SearchVectorField(null=True)
+
+
+
+    class Meta:
+        indexes = [GinIndex(fields=["title_vector", "explanation_vector"])]
+        ordering = ('-created',)
 
     def get_absolute_url(self):
         return reverse('csnip:snippet_detail', args=[self.created.year, \
                                                     self.created.month,\
                                                     self.created.day,self.slug])
-    class Meta:
-        ordering = ('-created',)
+
 
     def __str__(self):
         return self.title
