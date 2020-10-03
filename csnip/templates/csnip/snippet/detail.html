@@ -1,7 +1,7 @@
 <meta name = "viewport" charset="utf-8" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 
 
 {% block content %}
@@ -145,14 +145,14 @@
   <h2>Your comment has been added. </h2>
   <h2>Add Another one?</h2>
   <form class="" action="." method="post">
-    {{ comment_form.as_p }}
+    {{ comment_form|crispy }}
     {% csrf_token %}
     <p><input type="submit" name="" value="Add comment"></p>
   </form>
 {% else %}
   <h2>Add a new comment </h2>
   <form class="" action="." method="post">
-    {{ comment_form.as_p }}
+    {{ comment_form|crispy }}
     {% csrf_token %}
     <p><input type="submit" name="" value="Add comment"></p>
   </form>
