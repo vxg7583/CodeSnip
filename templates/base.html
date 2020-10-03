@@ -34,7 +34,7 @@
             <!-- <li class="nav-item"><a class = "nav-link"> Hello {{ request.user.first_name }}</a></li> -->
             <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
             <!-- <li class="nav-item"><a class="nav-link" href="{% url 'csnip:create' %}">Create New Snippet</a></li> -->
-            <li{% if section == "people" %}class="selected nav-item"{% endif %}>
+            <li {% if section == "people" %}class="selected nav-item"{% endif %}>
               <a class="nav-link" href="{% url 'user_list' %}">People</a>
             </li>
             <li class="nav-item">
@@ -44,11 +44,6 @@
               <a class="nav-link" href="{% url 'edit' %}">Edit Snipper Info</a>
             </li>
 
-            <!-- <form class="" action="/search/" method="get">
-              {{ form.as_p }}
-              {% csrf_token %}
-              <input type="submit" name="" value="Search">
-            </form> -->
             <li class="nav-item">
               <a class="nav-link" href={% url "csnip:snippet_search" %}>Search</a>
             </li>
@@ -66,6 +61,9 @@
 
             <li class="nav-item"><a class = "nav-link" href = "{% url 'login' %}"> Login </a> </li>
             <li class="nav-item"><a class = "nav-link" href = "{% url 'register' %}"> Sign Up </a> </li>
+            <li class="nav-item">
+              <a class="nav-link" href={% url "csnip:snippet_search" %}>Search</a>
+            </li>
 
           </ul>
 

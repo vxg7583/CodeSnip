@@ -42,7 +42,7 @@ def snippet_search(request):
                 )
             )
 
-            results = results.filter(rank__gte=0.03).order_by('-rank')
+            results = results.filter(rank__gte=0.00).order_by('-rank')
             # print(results[1])
             # print(results[1].rank)
 
