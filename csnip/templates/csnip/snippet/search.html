@@ -1,19 +1,21 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>{% extends "base.html" %}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+{% extends "base.html" %}
 {% block title %} Search for a Snip {% endblock %}
 {% load crispy_forms_tags %}
+
 {% block content %}
 <div class="container">
 
 
   {% if query %}
-    <h1>Snippets containing "{{ query }}"</h1>
+
     <h3>
       <p align="center">
       {% with result.count as total_results %}
-         {{ total_results }} <b>Look what we found :-) </b> {{ total_results|pluralize }}
+         {{ total_results }} <b>Look what we found :-) = Snippets containing "{{ query }}"</b> {{ total_results|pluralize }}
       {% endwith %}
-      <a href="{% url 'csnip:snippet_search' %}">Search Again</a>
+      <h6><a href="{% url 'csnip:snippet_search' %}">Search Again</a></h6>
       </p>
     </h3>
 
@@ -36,6 +38,8 @@
         </form>
   {% endif %}
 </div>
-{% block paginator %}{% endblock %}
-{% block footer %} {% endblock %}
+
+{% endblock %}
+{% block paginator %}
+  
 {% endblock %}

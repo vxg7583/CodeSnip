@@ -3,13 +3,16 @@
 
 {% block title %}People{% endblock %}
 
+
+
 {% block content %}
+<div class="container">
   <h1>People</h1>
   <div id="people-list">
     {% for user in users %}
       <div class="user">
         <a href="{{ user.get_absolute_url }}">
-          {% thumbnail user.profile.photo "100x100" crop="100%" as im %}
+          {% thumbnail user.profile.photo "80x80" crop="100%" as im %}
             <img src="{{ im.url }}">
           {% endthumbnail %}
         </a>
@@ -21,5 +24,8 @@
       </div>
     {% endfor %}
   </div>
-{% block paginator %}{% endblock %}
+{% include "pagination.html" with page=users %}
+</div>
 {% endblock %}
+
+{% block paginator %} {% endblock %}
