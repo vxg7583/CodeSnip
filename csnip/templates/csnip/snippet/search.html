@@ -7,16 +7,16 @@
 {% block content %}
 <div class="container">
 
-
+  <br>
   {% if query %}
 
     <h3>
       <p align="center">
       {% with result.count as total_results %}
          {{ total_results }} <b>Look what we found :-) = Snippets containing "{{ query }}"</b> {{ total_results|pluralize }}
-      {% endwith %}
+      {% endwith %}</p>
       <h6><a href="{% url 'csnip:snippet_search' %}">Search Again</a></h6>
-      </p>
+
     </h3>
 
     {% for snippet in results %}
@@ -28,18 +28,20 @@
     {% empty %}
       <p>There are no results for your query.</p>
     {% endfor %}
-
+    <div align="center"><b>{% include "pagination.html" with page=results %}</b></div>
   {% else %}
+        <br><br><br>
         <h1>Search for Snippets </h1>
         <form class="" action="." method="get">
           {{ form|crispy }}
           {% csrf_token %}
-          <button type="submit" class = "btn btn-success" name="" value="Search">Search</button>
+          <div align="center">
+              <button type="submit" class = "btn btn-success" name="" value="Search">Search</button>
+          </div>
+
         </form>
+        {% block paginator %} {% endblock %}
   {% endif %}
 </div>
 
-{% endblock %}
-{% block paginator %}
-  
 {% endblock %}

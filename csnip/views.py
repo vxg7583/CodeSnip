@@ -44,7 +44,18 @@ def snippet_search(request):
             )
 
             results = results.filter(rank__gte=0.001).order_by('-rank')
-            
+            # user_list = results.publishedd.all()
+            paginator = Paginator(results, 4)
+            page = request.GET.get('page')
+            try:
+                results = paginator.page(page)
+            except PageNotAnInteger:
+                results = paginator.page(1)
+            except EmptyPage:
+                results = paginator.page(paginator.num_pages)
+
+
+        # return render(request, 'csnip/snippet/search.html', {'form':form, 'query':query, 'results':results})
 
 
     return render(request, 'csnip/snippet/search.html', {'form':form, 'query':query, 'results':results})
