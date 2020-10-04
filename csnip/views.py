@@ -70,7 +70,7 @@ def snippet_share(request, snippet_id):
         if form.is_valid():
             # Form fields passed validation
             cd = form.cleaned_data
-            snippet_url = request.build_absolute_uri(snippet.get_absoulte_url())
+            snippet_url = request.build_absolute_uri(snippet.get_absolute_url())
             subject = '{} ({}) wants to share snippet "{}"'.format(cd['name'], cd['email'], snippet.title)
             message = 'Read "{}" at {}\n\n{}\'s comments: {}'.format(snippet.title, snippet_url, cd['name'], cd['comments'])
             send_mail(subject, message, 'admin@csnip.com', [cd['to']])

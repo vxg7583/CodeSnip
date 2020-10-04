@@ -5,4 +5,5 @@
   <h1>Welcome {{ new_user.firstname }}!</h1>
   <p>Your account has been Successfully created. Now you can <a href="{% url 'login' %}">log in</a>.</p>
 
+{% block paginator %}{% endblock %}
 {% endblock %}

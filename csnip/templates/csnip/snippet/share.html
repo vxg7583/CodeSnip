@@ -3,8 +3,13 @@
 {% block title %} Share a Snippet {% endblock %}
 
 {% block content %}
+<div class="container">
+
+
   {% if sent %}
     <h1>E-mail was sent Successfully.</h1>
+    <br>
+    <br>
     <p>
       "{{ snippet.title }}" was Successfully sent to {{ form.cleaned_data.to }}.
     </p>
@@ -14,7 +19,11 @@
     <form class="" action="." method="post">
       {{ form|crispy }}
       {% csrf_token %}
-      <input type="submit" name="" value="Send email">
+      <p align="center"><input type="submit" name="" value="Send email"></p>
     </form>
   {% endif %}
+
+
+</div>
+{% block paginator %}{% endblock %}
 {% endblock %}
