@@ -37,6 +37,22 @@
     top: 0%;
     bottom: 0%;
 }
+
+  .comm-div{
+    border: 1px dotted;
+  }
+
+  .simsnip-div{
+    border: 1px dotted;
+  }
+
+  .comm-interior{
+    border: 1px dotted;
+  }
+
+  .like-part{
+    border: 1px dotted;
+  }
 </style>
 
 
@@ -47,8 +63,15 @@
             <p>
 
               <div class="likes">
-                <a href="{% url 'csnip:snippet_share' snippet.id %}">
-                Share this post</a>
+
+                <!-- <a href="{% url 'csnip:snippet_share' snippet.id %}">
+                Share this post</a> -->
+
+                <button class = "btn btn-danger" type="submit" onclick="{% url 'csnip:snippet_share' snippet.id %} %}'" name='mybtn2'>Share Me!</button>
+
+            <div class="like-part">
+
+
               {% with total_likes=snippet.user_like.count user_like=snippet.user_like.all %}
 
                   <span class="count">
@@ -66,8 +89,8 @@
                     {% endif %}
                   </a>
               {% endwith %}
-
               </div>
+            </div>
 
             </p>
         </div>
@@ -116,54 +139,69 @@
 
 
 
+<br><br><br>
+<div class="container simsnip-div">
 
 
-<h2>Similar Snippets </h2>
-{% for snippet in similar_snippets %}
-  <p>
-    <a href="{{ snippet.get_absoulte_url }}">{{ snippet.title }}</a>
-  </p>
-{% empty %}
-  There are no similar snippets yet.
-{% endfor %}
+    <h5>Similar Snippets </h5>
+    {% for snippet in similar_snippets %}
+      <p>
+        <a href="{{ snippet.get_absoulte_url }}">{{ snippet.title }}</a>
+      </p>
+    {% empty %}
+      There are no similar snippets yet.
+    {% endfor %}
+
+</div>
+
+<br><br><br>
+
+<div class="container comm-div">
+
+      <br>
+      {% with comments.count as total_comments %}
+        <h6 color="red">
+          {{ total_comments }} comment(s)
+        </h6>
+      {% endwith %}
+<div class="container comm-interior">
 
 
+      {% for comment in comments %}
 
-{% with comments.count as total_comments %}
-  <h2>
-    {{ total_comments }} comment {{ total_comments|pluralize }}
-  </h2>
-{% endwith %}
+        <div class="comment">
+          <p class="info">
+            Comment {{ forloop.counter }} by {{ comment.name }}
+            {{ comment.created }}
+          </p>
+          {{ comment.body|linebreaks }}
+          <hr>
 
-{% for comment in comments %}
-  <div class="comment">
-    <p class="info">
-      Comment {{ forloop.counter }} by {{ comment.name }}
-      {{ comment.created }}
-    </p>
-    {{ comment.body|linebreaks }}
+        </div>
+      {% empty %}
+          <p>There are no comments yet.</p>
+      {% endfor %}
+</div>
+<br>
+      {% if new_comment %}
+        <h2>Your comment has been added. </h2>
+        <h2>Add Another one?</h2>
+        <form class="" action="." method="post">
+          {{ comment_form|crispy }}
+          {% csrf_token %}
+          <p><input type="submit" name="" value="Add comment"></p>
+        </form>
+      {% else %}
+        <h2>Add a new comment </h2>
+        <form class="" action="." method="post">
+          {{ comment_form|crispy }}
+          {% csrf_token %}
+          <!-- <p><input type="submit" name="" value="Add comment"></p> -->
+          <button type="submit" class = "btn btn-success" name="" value="Search">Comment</button>
+        </form>
+      {% endif %}
 
-  </div>
-{% empty %}
-    <p>There are no comments yet.</p>
-{% endfor %}
-
-{% if new_comment %}
-  <h2>Your comment has been added. </h2>
-  <h2>Add Another one?</h2>
-  <form class="" action="." method="post">
-    {{ comment_form|crispy }}
-    {% csrf_token %}
-    <p><input type="submit" name="" value="Add comment"></p>
-  </form>
-{% else %}
-  <h2>Add a new comment </h2>
-  <form class="" action="." method="post">
-    {{ comment_form|crispy }}
-    {% csrf_token %}
-    <p><input type="submit" name="" value="Add comment"></p>
-  </form>
-{% endif %}
+</div>
 
 
 
