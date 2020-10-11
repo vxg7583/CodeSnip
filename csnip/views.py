@@ -41,6 +41,11 @@ def snippet_search(request):
                     F('title_vector'),
                     SearchQuery(query)
                 )
+            ).annotate(
+                rank=SearchRank(
+                    F('explanation_vector'),
+                    SearchQuery(query)
+                )
             )
 
             results = results.filter(rank__gte=0.001).order_by('-rank')

@@ -3,13 +3,19 @@
 {% block title %}Edit your account {% endblock %}
 
 {% block content %}
-  <h1>Edit your account </h1>
-  <p>You can edit your account using the following form:</p>
-  <form class="" action="." method="post" enctype="multipart/form-data">
-    {{ user_form|crispy }}
-    {{ profile_form|crispy }}
-    {% csrf_token %}
-    <p><input type="submit" name="" value="Save changes"></p>
-  </form>
+<div class="container">
+
+
+      <h1>Edit your account </h1>
+      <p>You can edit your account using the following form:</p>
+      <form class="" action="." method="post" enctype="multipart/form-data">
+        {{ user_form|crispy }}
+        {{ profile_form|crispy }}
+        {% csrf_token %}
+        <!-- <p><input type="submit" name="" value="Save changes"></p> -->
+        <button type="submit" class = "btn btn-success" name="button">Edit</button>
+      </form>
+
+</div>
 {% block paginator %}{% endblock %}
 {% endblock %}

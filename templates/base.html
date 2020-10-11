@@ -48,8 +48,9 @@
               <a class="nav-link" href={% url "csnip:snippet_search" %}>Search</a>
             </li>
 
-          </ul>
 
+          </ul>
+          <a align = "right" href="{% url 'user_detail' user.username %}">Hey, {{ request.user.first_name }}!</a>
 
 
 
