@@ -1,24 +1,89 @@
 <meta name = "viewport" charset="utf-8" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="/path/to/styles/default.css">
+<script src="/path/to/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 {% extends "base.html" %}
 
-{% block title %} Welcome to CodeSnips! {% endblock %}
+{% block title %} Welcome to CodeSnip! {% endblock %}
 
 {% block content %}
 <style media="screen">
   .pree {
-    /* overflow:hidden; */
+
+    /* background:
+      linear-gradient(
+       to left,
+       red 0,
+       red 33.3%,
+       orange 33.3%,
+       orange 66.6%,
+       blue 66.6%,
+       blue )no-repeat; */
     background:white;
     height:400px;
     width:600px;
     text-align:left;
-    border:dotted;
+    border: 1px dotted black;
+
 
   }
+
+  .pree:hover{
+      border: 3px dotted blue;
+  }
+
   .tags{
     text-align:center;
   }
+
+  *, *::before, *::after {
+	box-sizing: border-box;
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+.rainbow {
+	position: relative;
+	z-index: 0;
+	width: 400px;
+	height: 300px;
+	border-radius: 10px;
+
+	padding: 2rem;
+
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: -2;
+		left: -50%;
+		top: -50%;
+		width: 200%;
+		height: 200%;
+		background-color: #399953;
+		background-repeat: no-repeat;
+		background-size: 50% 50%, 50% 50%;
+		background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+		background-image: linear-gradient(#399953, #399953), linear-gradient(#fbb300, #fbb300), linear-gradient(#d53e33, #d53e33), linear-gradient(#377af5, #377af5);
+		animation: rotate 4s linear infinite;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		left: 6px;
+		top: 6px;
+		width: calc(100% - 12px);
+		height: calc(100% - 12px);
+		background: white;
+		border-radius: 5px;
+	}
+}
 
 </style>
 <!-- <h1> Snippet List </h1> -->
@@ -49,13 +114,16 @@
 
               <!-- <pre class="precode"> -->
 
+
+
             <pre class='pree'>
-
+<code>
 {{ snippet.body|safe }}
-
+</code>
 
 
             </pre>
+
             <a href="{{ snippet.get_absolute_url }}" id="cont"><b>Open Snippet</b></a>
 
 

@@ -17,6 +17,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.postgres.search import SearchQuery, SearchRank
 from django.core.exceptions import PermissionDenied
+from django.utils import timezone
 
 # uuid.uuid4().hex[:6].upper()
 
@@ -150,14 +151,36 @@ def snippet_delete(request, snippet_id):
     User wants to delete an existing snippet
     '''
     snip_d = get_object_or_404(Snippet, id=snippet_id)
-    
+
     if request.user == snip_d.user:
         snip_d.delete()
         return render(request, 'csnip/snippet/delete.html')
     else:
         raise PermissionDenied
 
+@login_required
+def snippet_edit(request,pk):
+    '''
+    User wants to edit their own snippet.
+    '''
+    snip_e = get_object_or_404(Snippet, pk=pk)
+    if request.user == snip_e.user:
+        if request.method == 'POST':
+            form  = SnippetCreateForm(request.POST, instance=snip_e)
+            if form.is_valid():
+                snip_e = form.save(commit=False)
+                snip_e.user = request.user
+                snip_e.updated = timezone.now()
+                s_tags = form.cleaned_data['tags']
+                snip_e.tags.add(*s_tags)
 
+                snip_e.save()
+                messages.success(request, "Snippet Updated Successfully")
+                return redirect(snip_e.get_absolute_url())
+        else:
+            form = SnippetCreateForm()
+
+    return render(request, 'csnip/snippet/edit.html',{'section':'snippet', 'form':form})
 
 
 @login_required

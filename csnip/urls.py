@@ -15,6 +15,7 @@ urlpatterns = [
     path('search/', views.snippet_search, name='snippet_search'),
     path('like/', views.snip_like, name='like'),
     path('delete/<int:snippet_id>', views.snippet_delete, name='delete'),
+    path('edit/<int:pk>/', views.snippet_edit, name='edit'),
 
 
 
