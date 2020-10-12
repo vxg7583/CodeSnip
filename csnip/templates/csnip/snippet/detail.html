@@ -148,7 +148,7 @@
     <h5>Similar Snippets </h5>
     {% for snippet in similar_snippets %}
       <p>
-        <a href="{{ snippet.get_absoulte_url }}">{{ snippet.title }}</a>
+        <a href="{{ snippet.get_absolute_url }}">{{ snippet.title }}</a>
       </p>
     {% empty %}
       There are no similar snippets yet.
