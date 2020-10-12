@@ -5,16 +5,16 @@
 {% block content %}
 <div class="container">
 
-
+  <br><br><br>
   {% if sent %}
-    <h1>E-mail was sent Successfully.</h1>
+    <h4>E-mail was sent Successfully.</h4>
     <br>
     <br>
     <p>
       "{{ snippet.title }}" was Successfully sent to {{ form.cleaned_data.to }}.
     </p>
   {% else %}
-    <h1>Share "{{ snippet.title }}" by email.</h1>
+    <h4 style="color:orange;">Share "{{ snippet.title }}" by email.</h4>
     <hr>
     <form class="" action="." method="post">
       {{ form|crispy }}

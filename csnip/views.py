@@ -16,7 +16,7 @@ from django.db.models import Count, F
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.postgres.search import SearchQuery, SearchRank
-
+from django.core.exceptions import PermissionDenied
 
 # uuid.uuid4().hex[:6].upper()
 
@@ -107,7 +107,7 @@ def snippet_list(request, tag_slug=None):
         object_list = object_list.filter(tags__in=[tag])
 
 
-    paginator = Paginator(object_list,3)
+    paginator = Paginator(object_list,20)
     page = request.GET.get('page')
     try:
         snippets = paginator.page(page)
@@ -145,13 +145,17 @@ def snippet_detail(request, year, month, day, snippet):
 
 
 @login_required
-def snippet_delete(request, snip_id):
+def snippet_delete(request, snippet_id):
     '''
     User wants to delete an existing snippet
     '''
-    snip_d = get_object_or_404(Snippet, id=snip_id)
-    snip_d.delete()
-    return render(request, 'csnip/snippet/delete.html')
+    snip_d = get_object_or_404(Snippet, id=snippet_id)
+    
+    if request.user == snip_d.user:
+        snip_d.delete()
+        return render(request, 'csnip/snippet/delete.html')
+    else:
+        raise PermissionDenied
 
 
 

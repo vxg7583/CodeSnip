@@ -67,7 +67,7 @@
                 <!-- <a href="{% url 'csnip:snippet_share' snippet.id %}">
                 Share this post</a> -->
 
-                <button class = "btn btn-danger" type="submit" onclick="{% url 'csnip:snippet_share' snippet.id %} %}'" name='mybtn2'>Share Me!</button>
+              <button class="btn btn-danger" type="submit" onclick="location.href='{% url 'csnip:snippet_share' snippet.id %}';" name='share'>Share Me!</button>
 
             <div class="like-part">
 
@@ -133,10 +133,12 @@
 
 </div>
 <br><br><br>
+
+{% if snippet.user == user %}
 <div class="container" align="center">
   <button class="btn btn-success" type="submit" onclick = "location.href='{% url 'csnip:delete' snippet.id %}';" name="button">Delete Snip</button>
 </div>
-
+{% endif %}
 
 
 <br><br><br>
