@@ -1,11 +1,17 @@
 {% extends "base.html" %}
+<head>
+
+
 <meta name = "viewport" charset="utf-8" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 {% load crispy_forms_tags %}
 
 
 {% block content %}
+
 <style media="screen">
   .div-snipexp{
     padding-right:100px;
@@ -51,17 +57,29 @@
     border: 1px dotted;
   }
 
-  .like-part{
-    border: 1px dotted;
-  }
+
+  .fa {
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa:hover {
+  color: darkblue;
+}
+
+.like{
+  color:white;
+}
+
 </style>
 
-
+</head>
 
       <div class="row">
         <div class="div-sniptitle col-md-6">
             <h4><a href="{{ snippet.get_absolute_url }}">{{ snippet.title }}</a></h4>
-            <p>
+
 
               <div class="likes">
 
@@ -70,6 +88,7 @@
 
               <button class="btn btn-danger" type="submit" onclick="location.href='{% url 'csnip:snippet_share' snippet.id %}';" name='share'>Share Me!</button>
 
+            <button class="btn btn-dark" type="button" name="button">
             <div class="like-part">
 
 
@@ -84,16 +103,20 @@
                     data-action="{% if request.user in user_like %}un{% endif %}like" class="like">
 
                     {% if request.user not in user_like %}
-                      like
+                    like
+
                     {% else %}
-                      unlike
+                    unlike
+                    
+
                     {% endif %}
                   </a>
               {% endwith %}
               </div>
+            </button>
             </div>
 
-            </p>
+
         </div>
         <div class="div-snipexp1 col-md-6">
             <h4><code>Explanation</code></h4>
@@ -211,7 +234,11 @@
       {% endif %}
 
 </div>
-
+<!-- <script>
+    function myFunction(x) {
+      x.classList.toggle("fa-thumbs-down");
+    }
+</script> -->
 
 {% block paginator %}  {% endblock %}
 {% endblock %}
