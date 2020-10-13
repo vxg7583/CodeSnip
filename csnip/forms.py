@@ -23,6 +23,12 @@ class SnippetCreateForm(forms.ModelForm):
     #
     #     return snippet
 
+class SnippetEditForm(forms.ModelForm):
+    class Meta:
+        model = Snippet
+        fields = ('title','body','explanation','tags')
+        widgets = { 'title': forms.TextInput(attrs={'size': 100})}
+
 class EmailPostForm(forms.Form):
     name = forms.CharField(max_length=25)
     email = forms.EmailField()

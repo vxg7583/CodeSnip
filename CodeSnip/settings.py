@@ -100,13 +100,24 @@ CKEDITOR_CONFIGS = {
              '-', 'Maximize',
              '-', 'Language',
              '-', 'Smiley',
+             'CodeSnippet',
             ],
             ['RemoveFormat', 'Source'],
         ],
         'height': 600,
         'width': 400,
-        'toolbarCanCollapse': False,
+        'toolbarCanCollapse': True,
     },
+
+    'special':
+        {'toolbar': 'Special', 'height': 600, 'width':400,
+         'toolbar_Special':
+             [
+                 ['Bold','CodeSnippet','Smiley'],
+             ],
+             'extraPlugins': 'codesnippet'
+         }
+
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

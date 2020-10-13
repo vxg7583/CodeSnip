@@ -9,7 +9,8 @@
 <style media="screen">
   .user{
     border:0.5px dotted red;
-
+    height:200px;
+    width:600px;
   }
 </style>
 
@@ -22,7 +23,7 @@
     {% for user in users %}
       <div class="user">
         <a href="{{ user.get_absolute_url }}">
-          {% thumbnail user.profile.photo "30x30" crop="100%" as im %}
+          {% thumbnail user.profile.photo "60x60" crop="100%" as im %}
             <img src="{{ im.url }}">
           {% endthumbnail %}
         </a>
@@ -32,7 +33,7 @@
           </a>
 
       </div>
-
+      <hr>
     {% endfor %}
 
   </div>
