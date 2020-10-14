@@ -8,9 +8,10 @@
 {% block content %}
 <style media="screen">
   .user{
-    border:0.5px dotted red;
+    border: 3px solid grey;
     height:200px;
     width:600px;
+    border-radius:25px;
   }
 </style>
 
@@ -21,16 +22,22 @@
   <h1>People</h1>
 
     {% for user in users %}
-      <div class="user">
+      <div class="user" align="center">
+        <br>
+
         <a href="{{ user.get_absolute_url }}">
-          {% thumbnail user.profile.photo "60x60" crop="100%" as im %}
+          {% thumbnail user.profile.photo "100x100" crop="center" as im %}
             <img src="{{ im.url }}">
           {% endthumbnail %}
         </a>
 
-          <a href="{{ user.get_absolute_url }}" class="title">
+          <b><a href="{{ user.get_absolute_url }}" class="title">
             {{ user.get_full_name }}
-          </a>
+          </a></b>
+
+          <p>
+            {{ user.snippets}}
+          </p>
 
       </div>
       <hr>

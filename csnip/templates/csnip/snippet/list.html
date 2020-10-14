@@ -4,7 +4,7 @@
 <script src="/path/to/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {% extends "base.html" %}
-
+{% load social_share %}
 {% block title %} Welcome to CodeSnip! {% endblock %}
 
 {% block content %}
@@ -46,7 +46,12 @@
 		transform: rotate(1turn);
 	}
 }
-
+  .circle{
+      border: 1px solid black;
+      border-radius: 25px;
+      height:100px;
+      width:200px;
+  }
 .rainbow {
 	position: relative;
 	z-index: 0;
@@ -123,14 +128,19 @@
 
 
             </pre>
-
-            <a href="{{ snippet.get_absolute_url }}" id="cont"><b>Open Snippet</b></a>
-
+<div class="circle" style="background-color:;">
 
 
+            <a style="color:red;" href="{{ snippet.get_absolute_url }}" id="cont"><b>Open Snippet</b></a>
+            {% post_to_facebook  snippet.get_absolute_url "Share on Facebook!" %}
 
+            {% post_to_twitter "New Snippet: {{snippet.title}}. Check it out!" snippet.get_absolute_url "Tweet Me!" %}
 
+            {% post_to_linkedin snippet.get_absolute_url %}
 
+            {% post_to_whatsapp snippet.get_absolute_url "Share via WhatsApp" %}
+
+</div>
 
 
 

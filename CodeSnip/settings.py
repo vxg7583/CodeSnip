@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'sorl.thumbnail',
     'social_django',
+    'django_social_share',
     'django.contrib.postgres',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -155,6 +156,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -213,6 +215,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = 'csnip:snippet_list'
 LOGOUT_REDIRECT_URL = 'csnip:snippet_list'
 LOGIN_URL = 'login'
@@ -220,6 +223,13 @@ LOGOUT_URL = 'logout'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+# STATICFILES_DIRS = [
+#
+#     'static/static_extra',
+#
+# ]
 
 
 # social auth settings
