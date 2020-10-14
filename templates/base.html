@@ -47,12 +47,11 @@
 
 
 
-            <em><b>CodeSnips</b></em>
+            <b style="color:black;">CodeSnip<b><</b>/<b>></b> </b>
 
           </a> </li>
 
-          <!-- <li class="nav-item active"><a class = "nav-link" href = "{% url 'user_detail' user.username %}"> Snipper Dashboard </a> </li> -->
-          <!-- <li class="nav-item"><a class = "nav-link"> Hello {{ request.user.first_name }}</a></li> -->
+
           <li class="nav-item"><a style="color:red;" class="nav-link" href="{% url 'logout' %}">Logout</a></li>
           <!-- <li class="nav-item"><a class="nav-link" href="{% url 'csnip:create' %}">Create New Snippet</a></li> -->
           <li {% if section == "people" %}class="selected nav-item"{% endif %}>
@@ -70,7 +69,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_detail' user.username %}">Hey, {{ request.user.first_name }}!</a>
+            <a class="nav-link" href="{% url 'user_detail' request.user.username %}">Hey, {{ request.user.first_name }}!</a>
           </li>
 
         </ul>
