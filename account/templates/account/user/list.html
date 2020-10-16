@@ -8,43 +8,49 @@
 {% block content %}
 <style media="screen">
   .user{
-    border: 3px solid grey;
+    border: 0.2px dashed black;
     height:200px;
     width:600px;
     border-radius:25px;
   }
+
+  .round-border{
+    border: 0.2px solid black;
+    border-radius: 50px;
+  }
 </style>
+<br><br><br>
+<div class="container" align="center">
 
-<div class="container">
 
 
-
-  <h1>People</h1>
-
+  <h3><code> <b> Top 10 Contributors </b></code></h3>
+  <br>
     {% for user in users %}
       <div class="user" align="center">
         <br>
 
         <a href="{{ user.get_absolute_url }}">
           {% thumbnail user.profile.photo "100x100" crop="center" as im %}
-            <img src="{{ im.url }}">
+            <img class = "round-border" src="{{ im.url }}">
           {% endthumbnail %}
         </a>
 
           <b><a href="{{ user.get_absolute_url }}" class="title">
-            {{ user.get_full_name }}
+            {{ user.username}}
+
           </a></b>
 
-          <p>
-            {{ user.snippets}}
-          </p>
+          <br><br>
+          <b><a style="color:orange;"href="{{ user.get_absolute_url }}">{{ user.snippets_created.count }} Snippets</a></b>
+
 
       </div>
       <hr>
     {% endfor %}
 
   </div>
-{% include "pagination.html" with page=users %}
+<!-- {% include "pagination.html" with page=users %} -->
 
 {% endblock %}
 

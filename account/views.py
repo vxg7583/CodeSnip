@@ -11,6 +11,7 @@ from csnip.models import Snippet
 from common.decorators import ajax_required
 from django.http import JsonResponse
 from django.contrib import messages
+from django.db.models import Count
 
 
 # Create your views here.
@@ -80,7 +81,9 @@ def edit(request):
 
 @login_required
 def user_list(request):
-    users = User.objects.filter(is_active=True, is_staff=False).order_by('-date_joined')[:10]
+    users = list(dict.fromkeys(User.objects.filter(is_active=True, is_staff=False) \
+                                .annotate(count=Count('snippets_created'),followers_num=Count('followers')) \
+                                .order_by('-count','-followers_num')))[:10]
 
     return render(request, 'account/user/list.html', {'section':'people', 'users':users})
 
