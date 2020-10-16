@@ -92,9 +92,9 @@
 
 </style>
 <!-- <h1> Snippet List </h1> -->
-{% if tag %}
+<!-- {% if tag %}
   <h3 align="center">Snippets tagged with <b>'{{ tag.name }}'</b></h3>
-{% endif %}
+{% endif %} -->
 
 <br>
 
@@ -103,14 +103,14 @@
 
 
 
-            <h4> <b>{{ snippet.title }}</b> </h4>
+          <a style="color:#172AD0;" href="{{ snippet.get_absolute_url }}"><h4><b>{{ snippet.title }}</b> </h4> </a>
 
             <b>
               <p class="tags">Tags:
               {% for tag in snippet.tags.all %}
-                <a href="{% url 'csnip:snippet_list_by_tag' tag.slug %}">
+              <b>  <a style="color:rgb(139,0,0);" href="{% url 'csnip:snippet_list_by_tag' tag.slug %}">
                   {{ tag.name }}
-                </a>
+                </a></b>
                 {% if not forloop.last %}, {% endif %}
               {% endfor %}
               </p>
@@ -126,21 +126,38 @@
 {{ snippet.body|safe }}
 </code>
 
+    </pre>
+    <br>
+    <p>
 
-            </pre>
-<div class="circle" style="background-color:;">
 
+<button style= "background-color:white;" class="btn btn-primary" name="button"><a style="color:rgb(0,0,0);" href="{{ snippet.get_absolute_url }} " id="cont"><b>Open Snippet</b></a></button>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
 
-            <a style="color:red;" href="{{ snippet.get_absolute_url }}" id="cont"><b>Open Snippet</b></a>
-            {% post_to_facebook  snippet.get_absolute_url "Share on Facebook!" %}
+    <b>  {% post_to_facebook  snippet.get_absolute_url "Facebook Me!" %}</b>
+    </div>
+    <div class="col-sm-4">
+      <b>{% post_to_twitter "New Snippet: {{snippet.title}}. Check it out!" snippet.get_absolute_url "Tweet Me!" %}</b>
+    </div>
+    <div class="col-sm-4">
 
-            {% post_to_twitter "New Snippet: {{snippet.title}}. Check it out!" snippet.get_absolute_url "Tweet Me!" %}
+      <b>{% post_to_linkedin snippet.get_absolute_url %}</b>
+      <!-- {% post_to_whatsapp snippet.get_absolute_url "Share via WhatsApp" %} -->
+    </div>
 
-            {% post_to_linkedin snippet.get_absolute_url %}
-
-            {% post_to_whatsapp snippet.get_absolute_url "Share via WhatsApp" %}
-
+  </div>
 </div>
+
+
+
+
+
+
+
+
 
 
 
