@@ -7,7 +7,7 @@
   </style>
 
 <div class="container">
-
+  <br><br><br>
   <h1>Create an account </h1>
   <p><b>Please sign up using the following form:</b></p>
   <br>
@@ -17,8 +17,13 @@
     {% csrf_token %}
     <!-- <p><input type="submit" name="" value="Create my account"></p>
    -->
-   <button type="submit" class = "btn btn-success" name="button">Register</button>
+   <div align="center">
+
+
+   <button align="center" type="submit" class = "btn btn-success" name="button">Register</button>
+   </div>
   </form>
 </div>
+<br>
 {% block paginator %}{% endblock %}
 {% endblock %}

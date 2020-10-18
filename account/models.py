@@ -20,7 +20,7 @@ class Profile(models.Model):
                                                                 ['bachelors','bachelors']])
     major = models.TextField(max_length = 200, blank=True)
     school = models.TextField(max_length = 200, blank=True)
-    fav_coding_lang = models.TextField(max_length = 200, blank=True)
+    fav_coding_lang = models.CharField(max_length = 200, blank=True)
 
 
     def __str__(self):

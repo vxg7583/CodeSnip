@@ -28,10 +28,11 @@ def snippet_search(request):
     form = SearchForm()
     query = None
     results = []
-
+    # page = None
 
 
     if 'query' in request.GET:
+        # page = request.GET.get('page',1)
         form = SearchForm(request.GET)
 
         if form.is_valid():
@@ -50,21 +51,25 @@ def snippet_search(request):
             )
 
             results = results.filter(rank__gte=0.001).order_by('-rank')
-            # user_list = results.publishedd.all()
-            paginator = Paginator(results, 4)
-            page = request.GET.get('page')
-            try:
-                results = paginator.page(page)
-            except PageNotAnInteger:
-                results = paginator.page(1)
-            except EmptyPage:
-                results = paginator.page(paginator.num_pages)
 
-
-        # return render(request, 'csnip/snippet/search.html', {'form':form, 'query':query, 'results':results})
+    #     paginator = Paginator(results, 4)
+    #
+    # #
+    #     try:
+    #         results = paginator.page(page)
+    #     except PageNotAnInteger:
+    #         results = paginator.page(1)
+    #     except EmptyPage:
+    #         results = paginator.page(paginator.num_pages)
 
 
     return render(request, 'csnip/snippet/search.html', {'form':form, 'query':query, 'results':results})
+
+    # else:
+    #     return render(request, 'csnip/snippet/search.html', {'form':form, 'query':query, 'results':results})
+    #
+
+
 
 
 
@@ -108,7 +113,7 @@ def snippet_list(request, tag_slug=None):
         object_list = object_list.filter(tags__in=[tag])
 
 
-    paginator = Paginator(object_list,20)
+    paginator = Paginator(object_list,3)
     page = request.GET.get('page')
     try:
         snippets = paginator.page(page)

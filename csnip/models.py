@@ -32,6 +32,8 @@ class Snippet(models.Model):
     tags = TaggableManager()
     title_vector = SearchVectorField(null=True)
     explanation_vector = SearchVectorField(null=True)
+    # comments_vector = SearchVectorField(null=True)
+    # author_vector = SearchVectorField(null=True)
 
 
 

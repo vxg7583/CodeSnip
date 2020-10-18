@@ -8,6 +8,7 @@
 
   <br><br><br><br>
   <h1>{{ user.get_full_name }}</h1>
+  <p style="color:red;"><b> {{ user.profile.headline }}</b></p>
   <div class="profile-info">
     {% thumbnail user.profile.photo "180x180" crop="center" as im %}
       <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="user-detail">
