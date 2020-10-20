@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <br><br><br> 
+  <br><br><br>
   <div class="container">
       <h2>Snipper Sign In</h2>
       {% if form.errors %}
@@ -35,6 +35,7 @@
 
 
 
-      {% block paginator %} {% endblock %}
-      {% block footer %} {% endblock %}
+
 {% endblock %}
+{% block paginator %} {% endblock %}
+{% block footer %} {% endblock %}

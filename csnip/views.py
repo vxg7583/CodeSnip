@@ -107,7 +107,7 @@ def snippet_share(request, snippet_id):
 
 
 def snippet_list(request, tag_slug=None):
-    form = SearchForm()
+    search_form = SearchForm()
     object_list = Snippet.publishedd.all()
     tag = None
 
@@ -125,7 +125,7 @@ def snippet_list(request, tag_slug=None):
     except EmptyPage:
         snippets = paginator.page(paginator.num_pages)
 
-    return render(request, 'csnip/snippet/list.html', {'form':form, 'page':page,'snippets':snippets, 'tag':tag})
+    return render(request, 'csnip/snippet/list.html', {'search_form':search_form, 'page':page,'snippets':snippets, 'tag':tag})
 
 
 def snippet_detail(request, year, month, day, snippet):

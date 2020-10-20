@@ -12,11 +12,13 @@ from common.decorators import ajax_required
 from django.http import JsonResponse
 from django.contrib import messages
 from django.db.models import Count
-
+from csnip.forms import SearchForm
 
 # Create your views here.
 def user_login(request):
+
     if request.method == 'POST':
+        search_form = SearchForm()
         form = LoginForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
@@ -32,7 +34,8 @@ def user_login(request):
                 return HttpResponse('Invalid Login')
     else:
         form = LoginForm()
-    return render(request, 'account/login.html', {'form':form})
+        search_form = SearchForm()
+    return render(request, 'account/login.html', {'form':form, 'search_form':search_form})
 
 
 @login_required
