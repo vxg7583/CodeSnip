@@ -18,7 +18,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.postgres.search import SearchQuery, SearchRank
 from django.core.exceptions import PermissionDenied
 from django.utils import timezone
-
+from django.contrib.postgres.search import TrigramSimilarity
 # uuid.uuid4().hex[:6].upper()
 
 
@@ -43,11 +43,13 @@ def snippet_search(request):
                     F('title_vector'),
                     SearchQuery(query)
                 )
+
             ).annotate(
                 rank=SearchRank(
                     F('explanation_vector'),
                     SearchQuery(query)
                 )
+                # similarity=TrigramSimilarity(F('explanation_vector'), query)
             )
 
             results = results.filter(rank__gte=0.001).order_by('-rank')
@@ -96,7 +98,7 @@ def snippet_share(request, snippet_id):
             snippet_url = request.build_absolute_uri(snippet.get_absolute_url())
             subject = '{} ({}) wants to share snippet "{}"'.format(cd['name'], cd['email'], snippet.title)
             message = 'Read "{}" at {}\n\n{}\'s comments: {}'.format(snippet.title, snippet_url, cd['name'], cd['comments'])
-            send_mail(subject, message, 'admin@csnip.com', [cd['to']])
+            send_mail(subject, message, 'admin@codesnips.org', [cd['to']])
             sent = True
     else:
         form = EmailPostForm()
@@ -105,6 +107,7 @@ def snippet_share(request, snippet_id):
 
 
 def snippet_list(request, tag_slug=None):
+    form = SearchForm()
     object_list = Snippet.publishedd.all()
     tag = None
 
@@ -113,7 +116,7 @@ def snippet_list(request, tag_slug=None):
         object_list = object_list.filter(tags__in=[tag])
 
 
-    paginator = Paginator(object_list,3)
+    paginator = Paginator(object_list,10)
     page = request.GET.get('page')
     try:
         snippets = paginator.page(page)
@@ -122,7 +125,7 @@ def snippet_list(request, tag_slug=None):
     except EmptyPage:
         snippets = paginator.page(paginator.num_pages)
 
-    return render(request, 'csnip/snippet/list.html', {'page':page,'snippets':snippets, 'tag':tag})
+    return render(request, 'csnip/snippet/list.html', {'form':form, 'page':page,'snippets':snippets, 'tag':tag})
 
 
 def snippet_detail(request, year, month, day, snippet):

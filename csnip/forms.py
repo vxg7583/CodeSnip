@@ -10,6 +10,7 @@ class SnippetCreateForm(forms.ModelForm):
         model = Snippet
         fields = ('title','body','explanation','tags')
         widgets = { 'title': forms.TextInput(attrs={'size': 100})}
+        # widget=forms.TextInput(attrs={'placeholder': 'Search'})
 
         # widget=forms.TextInput(attrs={'size':'30','maxlength':'100'})
 

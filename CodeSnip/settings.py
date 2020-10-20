@@ -95,7 +95,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': [
             ['Undo', 'Redo',
              '-', 'Bold', 'Italic', 'Underline',
-             '-', 'Link', 'Unlink', 'Anchor',
+             '-', 'Anchor',
              '-', 'Format',
              '-', 'SpellChecker', 'Scayt',
              '-', 'Maximize',
@@ -105,16 +105,17 @@ CKEDITOR_CONFIGS = {
             ],
             ['RemoveFormat', 'Source'],
         ],
-        'height': 600,
+        'height': 500,
         'width': 400,
         'toolbarCanCollapse': True,
     },
 
     'special':
-        {'toolbar': 'Special', 'height': 600, 'width':400,
+        {'toolbar': 'Special', 'height': 500, 'width':400,
          'toolbar_Special':
              [
                  ['Bold','CodeSnippet','Smiley'],
+                 ['RemoveFormat', 'Source'],
              ],
              'extraPlugins': 'codesnippet'
          }
@@ -123,7 +124,12 @@ CKEDITOR_CONFIGS = {
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'nchandana07@gmail.com'
+EMAIL_HOST_PASSWORD = 'Vikrant123!!'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

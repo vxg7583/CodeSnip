@@ -1,5 +1,6 @@
 {% load static %}
 {% load thumbnail %}
+{% load crispy_forms_tags %}
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/> -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -90,12 +91,33 @@
             <a style="color:red;" class="nav-link" href={% url "csnip:snippet_search" %}><b>Search</b></a>
           </li>
 
-        </ul>
+          <li class="nav-item">
+            <a style="color:blue;" class="nav-link" href="{% url 'csnip:create' %}"><b>Create Snip</b></a>
+          </li>
 
+          <li class="nav-item">
+
+
+
+          </li>
+        </ul>
+        <p align="right">
+        <form  class="nav-link" action="{% url 'csnip:snippet_search' %}" method="get">
+
+
+
+          {{ form }}
+          {% csrf_token %}
+
+
+          <button type="submit" class = "btn btn-success" name="" value="Search">search</button>
+
+        </form>
+        </p>
 
 
   </nav>
-  <marquee behavior="scroll" direction="right"><b>Please Sign Up to Create Snippets and view more!</b></marquee>
+  <!-- <marquee behavior="scroll" direction="right"><b>Please Sign Up to Create Snippets and view more!</b></marquee> -->
 
   {% endif %}
   <body align="center">

@@ -7,12 +7,12 @@
 
     <div class = "col-md-12 current">
       {% if page.has_previous %}
-        <a style="color:blue" href="?page={{ page.previous_page_number }}"> <b>Previous</b></a>
+        <h3><a style="color:blue" href="?page={{ page.previous_page_number }}"> <b>Previous</b></a></h3>
       {% endif %}
-      <p>         </p>
-        <!-- Page {{ page.number }} of {{ page.paginator.num_pages }} -->
+    
+        Page {{ page.number }} of {{ page.paginator.num_pages }}
         {% if page.has_next %}
-          <a style="color:green" href="?page={{ page.next_page_number }}"><b>Next</b></a>
+          <h3><a style="color:green" href="?page={{ page.next_page_number }}"><b>Next</b></a></h3>
         {% endif %}
     </div>
 

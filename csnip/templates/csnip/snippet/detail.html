@@ -144,7 +144,7 @@
 
       <div class="col-md-6 div-snipexp">
         <br>
-        <b>{{ snippet.explanation|safe }}</b>
+        {{ snippet.explanation|safe }}
       </div>
 
 
@@ -184,7 +184,7 @@
 </div>
 
 <br><br><br>
-
+{% if request.user.is_authenticated %}
 <div class="container comm-div">
 
       <br>
@@ -234,6 +234,7 @@
       {% endif %}
 
 </div>
+{% endif %}
 <!-- <script>
     function myFunction(x) {
       x.classList.toggle("fa-thumbs-down");

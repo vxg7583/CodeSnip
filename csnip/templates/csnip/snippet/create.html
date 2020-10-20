@@ -7,15 +7,16 @@
     /* border: 1px dotted black; */
     background-color: white;
     text-align: center;
-    /* height:1300px; */
+
+    /* width:800px; */
     /* overflow:hidden; */
   }
 </style>
-<br><br><br>
-<div class="row">
+<br><br><br><br><br>
 
 
-  <div class="container col-md-6 col-md-offset-3">
+
+  <div class="container">
 
 
     <div class="form-main-div" align="center">
@@ -43,12 +44,12 @@
             <div class="row">
 
 
-                  <div class="col-6">
+                  <div class="col-sm-6">
                     <p> <b><em>Please Paste Code Snip</em></b></p>
                     {{ form.body }}
                   </div>
 
-                  <div class="col-6">
+                  <div class="col-sm-6">
                     <p> <b><em>Please Explain your code snip</em></b></p>
 
                     {{ form.explanation }}
@@ -63,7 +64,7 @@
 
       </div>
     </div>
-</div>
+
 
 
 {% block paginator %}{% endblock %}
