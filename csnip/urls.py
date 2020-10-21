@@ -16,6 +16,7 @@ urlpatterns = [
     path('like/', views.snip_like, name='like'),
     path('delete/<int:snippet_id>', views.snippet_delete, name='delete'),
     path('edit/<int:pk>/', views.snippet_edit, name='edit'),
+    path('delete_comment/<int:comment_id>', views.comment_delete, name='comment_delete'),
 
 
 

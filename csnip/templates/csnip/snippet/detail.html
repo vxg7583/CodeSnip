@@ -208,7 +208,12 @@
             <b>{{ comment.created }}</b> by
             <a style="color:red;" href="{{ comment.user.get_absolute_url }} ">{{ comment.user }}</a>
           </p>
+
           <em>{{ comment.body|linebreaks }}</em>
+          {% if comment.user == user %}
+                <!-- {% url path.to.view.delete_comment comment_id=comment.id as delete_url %} -->
+                <a href="{% url 'csnip:comment_delete' comment.id %}">delete</a>
+          {% endif %}
           <hr>
 
         </div>

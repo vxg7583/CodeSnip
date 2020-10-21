@@ -19,6 +19,9 @@ from django.contrib.postgres.search import SearchQuery, SearchRank
 from django.core.exceptions import PermissionDenied
 from django.utils import timezone
 from django.contrib.postgres.search import TrigramSimilarity
+# from django_comments.views.moderation import perform_delete
+# from django_comments.models import Comment
+import django.http as http
 # uuid.uuid4().hex[:6].upper()
 
 
@@ -144,7 +147,7 @@ def snippet_detail(request, year, month, day, snippet):
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
-            new_comment.user = user
+            new_comment.user = request.user
             new_comment.snippet = snippet
             new_comment.save()
     else:
@@ -156,6 +159,21 @@ def snippet_detail(request, year, month, day, snippet):
     similar_snippets = Snippet.publishedd.filter(tags__in=snippet_tags_ids).exclude(id=snippet.id)
     similar_snippets = similar_snippets.annotate(same_tags=Count('tags')).order_by('-same_tags','-created')[:4]
     return render(request, 'csnip/snippet/detail.html', {'snippet':snippet,'comments':comments, 'new_comment':new_comment,'comment_form':comment_form, 'similar_snippets':similar_snippets})
+
+@login_required
+def comment_delete(request, comment_id):
+    '''
+    User wants to delete an existing snippet
+    '''
+    comment_d = get_object_or_404(Comment, id=comment_id)
+
+    if request.user != comment_d.user:
+        raise Http404
+    # perform_delete(request, comment_d)
+    comment_d.delete()
+    return http.HttpResponseRedirect(comment_d.snippet.get_absolute_url())
+
+
 
 
 @login_required
