@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, EmptyPage,\
                                     PageNotAnInteger
 
 from django.views.generic import ListView
-from .forms import SnippetCreateForm, EmailPostForm, CommentForm, SearchForm
+from .forms import SnippetCreateForm, EmailPostForm, CommentForm, SearchForm, SnippetEditForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.text import slugify
@@ -12,7 +12,7 @@ import uuid
 from django.core.mail import send_mail
 from django.contrib.postgres.search import SearchVector
 from taggit.models import Tag
-from django.db.models import Count, F
+from django.db.models import Count, F, Q
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.postgres.search import SearchQuery, SearchRank
@@ -29,6 +29,7 @@ def snippet_search(request):
     query = None
     results = []
     # page = None
+
 
 
     if 'query' in request.GET:
@@ -50,9 +51,11 @@ def snippet_search(request):
                     SearchQuery(query)
                 )
                 # similarity=TrigramSimilarity(F('explanation_vector'), query)
-            )
+            ).filter(rank__gte=0.0000001).order_by('-rank')
 
-            results = results.filter(rank__gte=0.001).order_by('-rank')
+            # results = results.filter(rank__gte=0.00001).order_by('-rank')
+            # results = Snippet.publishedd.filter(Q(title_vector__icontains=query) \
+            # | Q(explanation_vector__icontains=query))
 
     #     paginator = Paginator(results, 4)
     #
@@ -130,6 +133,7 @@ def snippet_list(request, tag_slug=None):
 
 def snippet_detail(request, year, month, day, snippet):
     snippet = get_object_or_404(Snippet, slug=snippet)
+    user = request.user
     # , created__year=year, created__month=month, created__day=day)
     # List of active comments for this snippet
     comments = snippet.comments.filter(active=True)
@@ -140,6 +144,7 @@ def snippet_detail(request, year, month, day, snippet):
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
+            new_comment.user = user
             new_comment.snippet = snippet
             new_comment.save()
     else:
@@ -174,7 +179,7 @@ def snippet_edit(request,pk):
     snip_e = get_object_or_404(Snippet, pk=pk)
     if request.user == snip_e.user:
         if request.method == 'POST':
-            form  = SnippetCreateForm(request.POST, instance=snip_e)
+            form  = SnippetEditForm(request.POST, instance=snip_e)
             if form.is_valid():
                 snip_e = form.save(commit=False)
                 snip_e.user = request.user
@@ -186,7 +191,7 @@ def snippet_edit(request,pk):
                 messages.success(request, "Snippet Updated Successfully")
                 return redirect(snip_e.get_absolute_url())
         else:
-            form = SnippetCreateForm()
+            form = SnippetEditForm(instance=snip_e)
 
     return render(request, 'csnip/snippet/edit.html',{'section':'snippet', 'form':form})
 

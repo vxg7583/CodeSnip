@@ -86,7 +86,7 @@ def edit(request):
 def user_list(request):
     users = list(dict.fromkeys(User.objects.filter(is_active=True, is_staff=False) \
                                 .annotate(count=Count('snippets_created'),followers_num=Count('followers')) \
-                                .order_by('-count','-followers_num')))
+                                .order_by('-count','-followers_num')))[:50]
 
     return render(request, 'account/user/list.html', {'section':'people', 'users':users})
 

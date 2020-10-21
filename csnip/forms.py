@@ -28,7 +28,7 @@ class SnippetEditForm(forms.ModelForm):
     class Meta:
         model = Snippet
         fields = ('title','body','explanation','tags')
-        widgets = { 'title': forms.TextInput(attrs={'size': 100})}
+        widgets = {'title': forms.TextInput(attrs={'size': 100})}
 
 class EmailPostForm(forms.Form):
     name = forms.CharField(max_length=25)
@@ -39,7 +39,7 @@ class EmailPostForm(forms.Form):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('name', 'email', 'body')
+        fields = ('body',)
 
 
 
