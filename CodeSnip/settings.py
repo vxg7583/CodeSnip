@@ -181,6 +181,8 @@ DATABASES = {
         'NAME': 'postgres',
         'USER':'postgres',
         'PASSWORD':'vicky0607',
+        'HOST':'localhost',
+        'PORT':'5432',
     }
 }
 
@@ -253,6 +255,6 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'WhBxZ_janCOJSkqJ9lNZHKwQ' # Google Consumer 
 
 # AAAAAAAAAAAAAAAAAAAAADGUHwEAAAAAu%2BACkpJx21NbdLFL463SsF4OsUk%3DCcGt9zzh1cTdD4e8x0bfEg3FoeigxAaKjRNzOHm5WHtHucEc9x twitter bearer token
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
