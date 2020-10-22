@@ -27,6 +27,7 @@ media
 # Python #
 *.py[cod]
 *$py.class
+local_settings.py
 
 # Distribution / packaging
 .Python build/
