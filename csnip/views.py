@@ -157,7 +157,7 @@ def snippet_detail(request, year, month, day, snippet):
     # List of similar snippets
     snippet_tags_ids = snippet.tags.values_list('id', flat=True)
     similar_snippets = Snippet.publishedd.filter(tags__in=snippet_tags_ids).exclude(id=snippet.id)
-    similar_snippets = similar_snippets.annotate(same_tags=Count('tags')).order_by('-same_tags','-created')[:4]
+    similar_snippets = similar_snippets.annotate(same_tags=Count('tags')).order_by('-same_tags','-created')[:5]
     return render(request, 'csnip/snippet/detail.html', {'snippet':snippet,'comments':comments, 'new_comment':new_comment,'comment_form':comment_form, 'similar_snippets':similar_snippets})
 
 @login_required
