@@ -252,3 +252,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '943335960852-qi7ik3h4q1ijbf2g3ssv5dp51ba18ku8.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'WhBxZ_janCOJSkqJ9lNZHKwQ' # Google Consumer Secret
 
 # AAAAAAAAAAAAAAAAAAAAADGUHwEAAAAAu%2BACkpJx21NbdLFL463SsF4OsUk%3DCcGt9zzh1cTdD4e8x0bfEg3FoeigxAaKjRNzOHm5WHtHucEc9x twitter bearer token
+try:
+    from local_settings import *
+except ImportError:
+    pass
