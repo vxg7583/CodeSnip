@@ -15,8 +15,8 @@ import os
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-BASE_DIR = os.path.dirname(os.path.abspath(os.path.join(__file__, os.pardir)))
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+# BASE_DIR = os.path.dirname(os.path.abspath(os.path.join(__file__, os.pardir)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -223,18 +223,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 LOGIN_REDIRECT_URL = 'csnip:snippet_list'
 LOGOUT_REDIRECT_URL = 'csnip:snippet_list'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 # STATICFILES_DIRS = [
 #
-#     'static/static_extra',
+#     os.path.join(BASE_DIR, 'CodeSnip/static/'),
 #
 # ]
 

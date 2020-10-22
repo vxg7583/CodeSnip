@@ -27,8 +27,8 @@ class UserEditForm(forms.ModelForm):
         fields = ('first_name','last_name','email')
 
 class ProfileEditForm(forms.ModelForm):
-
+    fav_coding_lang = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Coding Language'}))
     class Meta:
         model = Profile
         fields = ('date_of_birth', 'photo','fav_coding_lang',\
-                   'headline')
+                   'headline','email','git_url')
