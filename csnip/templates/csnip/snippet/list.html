@@ -140,23 +140,19 @@ hr.style-five:after {  /* Not really supposed to work, but does */
 
 <button style= "background-color:white;" class="btn btn-primary" name="button"><a style="color:rgb(0,0,0);" href="{{ snippet.get_absolute_url }} " id="cont"><b>Open Snippet</b></a></button>
 <br><br><br>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
 
-    <b>  {% post_to_facebook  snippet.get_absolute_url "Facebook Me!" %}</b>
-    </div>
-    <div class="col-sm-4">
+
+
+
+
       <b>{% post_to_twitter "New Snippet: {{snippet.title}}. Check it out!" snippet.get_absolute_url "Tweet Me!" %}</b>
-    </div>
-    <div class="col-sm-4">
+      <br>
 
       <b>{% post_to_linkedin snippet.get_absolute_url %}</b>
-      <!-- {% post_to_whatsapp snippet.get_absolute_url "Share via WhatsApp" %} -->
-    </div>
+      <br>
+      <b>  {% post_to_facebook  snippet.get_absolute_url "Facebook Share" %}</b>
 
-  </div>
-</div>
+
 
 
 
@@ -168,7 +164,7 @@ hr.style-five:after {  /* Not really supposed to work, but does */
 
 
           <br>
-          <hr> 
+          <hr>
           <br>
       </div>
       <!-- Main div ends -->
