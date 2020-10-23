@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.views.generic import TemplateView
 
 app_name = 'csnip'
 # REMEMBER THAT A URL PATH CONSISTS OF A STRING PATTERN, A VIEW AND A OPTIONAL NAME THAT ALLOWS YOU TO NAME THE URL SITE WIDE
@@ -17,6 +18,7 @@ urlpatterns = [
     path('delete/<int:snippet_id>', views.snippet_delete, name='delete'),
     path('edit/<int:pk>/', views.snippet_edit, name='edit'),
     path('delete_comment/<int:comment_id>', views.comment_delete, name='comment_delete'),
+    path('about/', TemplateView.as_view(template_name="csnip/snippet/about.html"), name='csnip-about'),
 
 
 
