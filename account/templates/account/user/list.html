@@ -8,22 +8,27 @@
 {% block content %}
 <style media="screen">
   .user{
-    border: 0.2px dashed black;
-    height:200px;
-    width:600px;
-    border-radius:25px;
+    border: 0.1px dashed black;
+    height:100%;
+    width:100%;
+    border-radius:50px;
+
   }
+  .user:hover {
+    border: 2px dashed;
+   border-color: red;
+}
 
   .round-border{
     border: 0.2px solid black;
     border-radius: 50px;
   }
 </style>
-<br><br><br>
-<div class="container" align="center">
+
+<div class="container-fluid" align="center">
 
 
-
+  <br><br><br><br><br>
   <h3> <b> <u>Top 50 Contributors </u></b></h3>
   <br>
     {% for user in users %}

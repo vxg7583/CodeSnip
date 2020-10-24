@@ -90,7 +90,7 @@
             {% for snippets in user_snippets %}
               <a href="{% url 'csnip:snippet_detail' snippets.created.year snippets.created.month snippets.created.day snippets.slug %}">{{ snippets.title }}</a>
               <br>
-              <p style="font-size:1.5vw">{{ snippets.comments.count }} comments</p>
+              <p style="font-size0.8vw">{{ snippets.comments.count }} comments</p>
 
 
             {% endfor %}

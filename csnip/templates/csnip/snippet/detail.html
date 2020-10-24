@@ -19,16 +19,14 @@
 
   .div-snipexp1{
 
-    padding-top:80px;
+    padding-top:50px;
+
   }
 
-  .div-snipbody{
-    padding-left:100px;
-  }
 
   .div-sniptitle{
     padding-left:100px;
-    padding-top:80px;
+    padding-top:50px;
   }
 
   .exp-header{
@@ -79,15 +77,29 @@
 
 
       <br><br><br>
-      <div class="row">
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+
+
+
+        <br>
         <div class="div-sniptitle col-md-6">
             <h4><a href="{{ snippet.get_absolute_url }}">{{ snippet.title }}</a></h4>
 
 
               <div class="likes">
 
-                <!-- <a href="{% url 'csnip:snippet_share' snippet.id %}">
-                Share this post</a> -->
+
 
               <button class="btn btn-danger" type="submit" onclick="location.href='{% url 'csnip:snippet_share' snippet.id %}';" name='share'>Share Me!</button>
 
@@ -120,34 +132,21 @@
             </div>
 
 
-        </div>
-        <div class="div-snipexp1 col-md-6">
-            <h4><a href="#">Explanation</a></h4>
-        </div>
 
-
-        <br>
-
-      </div>
-
-
-
-<div class="row">
-
-
-
-
-      <div class="col-md-6 div-snipbody">
-        <br>
         <pre class="precode">
 <code>{{ snippet.body|safe }}</code>
         </pre>
       </div>
 
 
-      <div class="col-md-6 div-snipexp">
+      <div class="div-snipexp col-md-6">
         <br>
-        {{ snippet.explanation|safe }}
+        <div class="div-snipexp1">
+            <h4><a href="#">Explanation</a></h4>
+            {{ snippet.explanation|safe }}
+        </div>
+        <br>
+
       </div>
 
 
