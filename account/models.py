@@ -23,6 +23,8 @@ class Profile(models.Model):
     fav_coding_lang = models.CharField(max_length = 200, blank=True)
     email = models.CharField(max_length = 200, blank=True)
     git_url = models.URLField(max_length = 200, blank=True)
+    linkedin_url = models.URLField(max_length = 200, blank=True)
+    favorite_tech_stack = models.CharField(max_length = 200, blank=True)
 
 
     def __str__(self):

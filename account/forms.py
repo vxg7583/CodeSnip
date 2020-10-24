@@ -27,8 +27,33 @@ class UserEditForm(forms.ModelForm):
         fields = ('first_name','last_name','email')
 
 class ProfileEditForm(forms.ModelForm):
-    fav_coding_lang = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Coding Language'}))
+    fav_coding_lang = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'eg:python, java'}),
+        required=False,
+        label='Favorite Coding Language'
+    )
+
+    git_url = forms.CharField(
+        label='Git URL',
+        widget=forms.TextInput(attrs={'placeholder': 'github.com/your-user-name'}),
+        required=False
+    )
+
+    linkedin_url = forms.CharField(
+        label='LinkedIn URL',
+        widget=forms.TextInput(attrs={'placeholder': 'linkedin.com/in/your-user-name'}),
+        required=False
+    )
+
+    favorite_tech_stack = forms.CharField(
+        label='Tech Stack',
+        widget=forms.TextInput(attrs={'placeholder': 'Django-Postgres-Bootstrap'}),
+        required=False
+    )
+
+
+
     class Meta:
         model = Profile
         fields = ('date_of_birth', 'photo','fav_coding_lang',\
-                   'headline','email','git_url')
+                   'headline','email','git_url','linkedin_url','favorite_tech_stack')

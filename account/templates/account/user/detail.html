@@ -4,41 +4,110 @@
 {% block title %}{{ user.get_full_name }}{% endblock %}
 
 {% block content %}
-<div class="container">
+<style media="screen">
 
-  <br><br><br><br>
-  <h1>{{ user.get_full_name }}</h1>
-  <p style="color:red;"><b> {{ user.profile.headline }}</b></p>
-  <div class="profile-info">
-    {% thumbnail user.profile.photo "180x180" crop="center" as im %}
-      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="user-detail">
-    {% endthumbnail %}
-  </div>
-  {% with total_followers=user.followers.count %}
-    <span class="count">
-      <span class="total">{{ total_followers }}</span>
-      follower{{ total_followers|pluralize }}
-    </span>
-    <a href="#" data-id="{{ user.id }}" data-action="{% if request.user in user.followers.all %}un{% endif %}follow" class="follow">
-      {% if request.user not in user.followers.all %}
-        Follow
-      {% else %}
-        Unfollow
-      {% endif %}
-    </a>
-    <br>
-    <br>
-    <!-- <hr> -->
-    <div class="">
-      {% for snippets in user_snippets %}
-        <a href="{% url 'csnip:snippet_detail' snippets.created.year snippets.created.month snippets.created.day snippets.slug %}">{{ snippets.title }}</a>
-        <br>
-      {% endfor %}
 
+    img {
+      border: 2px solid #555;
+      border-radius: 100%;
+    }
+
+      @media (min-width: 768px) {
+      .h-md-100 { height: 100vh; }
+  }
+  .btn-round { border-radius: 30px; }
+  .bg-indigo { background: black; }
+  .text-cyan { color: #35bdff; }
+
+
+</style>
+
+<div class="d-md-flex h-md-100 align-items-center">
+
+<!-- First Half -->
+
+<div class="col-md-6 p-0 bg-indigo h-md-100">
+    <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+        <div class="logoarea pt-5 pb-5">
+
+          <div class="container">
+
+            <h1>{{ user.get_full_name }}</h1>
+            <p style="color:red;"><b> {{ user.profile.headline }}</b></p>
+            <div class="profile-info">
+              {% thumbnail user.profile.photo "180x180" crop="center" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="user-detail">
+              {% endthumbnail %}
+            </div>
+            <br>
+            {% with total_followers=user.followers.count %}
+              <span class="count">
+                <span class="total"><b>{{ total_followers }}</b></span>
+                follower{{ total_followers|pluralize }}
+              </span>
+              <a href="#" data-id="{{ user.id }}" data-action="{% if request.user in user.followers.all %}un{% endif %}follow" class="follow">
+                {% if request.user not in user.followers.all %}
+                  Follow
+                {% else %}
+                  Unfollow
+                {% endif %}
+              </a>
+              <br><br>
+              <div class="">
+                Favorite Programming Language: <a href="#">{{ user.profile.fav_coding_lang }}</a>
+              </div>
+              <br>
+              <div class="">
+                Tech Stack: <a href="#">{{ user.profile.favorite_tech_stack }}</a>
+              </div>
+              <br>
+              <a href="{{ user.profile.git_url }}"><b>Github</b></a>
+              <br>
+              <a href="{{ user.profile.linkedin_url }}"><b>LinkedIn</b></a>
+              <br>
+
+
+          </div>
+
+
+        </div>
     </div>
-
-  {% endwith %}
 </div>
+
+<!-- Second Half -->
+
+<div class="col-md-6 p-0 bg-white h-md-100 loginarea">
+    <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+      <div class="container" align="center">
+
+
+
+          <br>
+          <br>
+          <!-- <hr> -->
+          <div class="">
+            <h3><u>Your Snippets:</u></h3>
+            {% for snippets in user_snippets %}
+              <a href="{% url 'csnip:snippet_detail' snippets.created.year snippets.created.month snippets.created.day snippets.slug %}">{{ snippets.title }}</a>
+              <br>
+              <p style="font-size:1.5vw">{{ snippets.comments.count }} comments</p>
+
+
+            {% endfor %}
+
+          </div>
+
+        {% endwith %}
+      </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
 {% block paginator %}{% endblock %}
 {% endblock %}
 

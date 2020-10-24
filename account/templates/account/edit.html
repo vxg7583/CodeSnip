@@ -5,16 +5,52 @@
 {% block content %}
 <div class="container">
 
-      <br><br><br><br>
+      <br><br><br><br><br>
       <h1>Edit your account </h1>
       <p>You can edit your account using the following form:</p>
-      <form class="" action="." method="post" enctype="multipart/form-data">
+      <!-- <form class="" action="." method="post" enctype="multipart/form-data">
         {{ user_form|crispy }}
         {{ profile_form|crispy }}
         {% csrf_token %}
         <!-- <p><input type="submit" name="" value="Save changes"></p> -->
-        <button type="submit" class = "btn btn-success" name="button">Confirm Changes</button>
-      </form>
+        <!-- <button type="submit" class = "btn btn-success" name="button">Confirm Changes</button> -->
+      <!-- </form> -->
+
+
+      <form class="" action="." method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+              {{ user_form.first_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ user_form.last_name|as_crispy_field }}
+            </div>
+          </div>
+
+          {{ profile_form.headline|as_crispy_field }}
+          <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+              {{ profile_form.git_url|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 mb-0">
+              {{ profile_form.linkedin_url|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-2 mb-0">
+              {{ profile_form.favorite_tech_stack|as_crispy_field }}
+            </div>
+          </div>
+          {{ profile_form.email|as_crispy_field }}
+          <br>
+          {{ profile_form.fav_coding_lang|as_crispy_field }}
+          <br>
+          {{ profile_form.photo|as_crispy_field }}
+          <br>
+          <div align="center">
+            <button align="center" type="submit" class="btn btn-primary">Confirm Changes</button>
+          </div>
+
+        </form>
 
 </div>
 {% block paginator %}{% endblock %}
