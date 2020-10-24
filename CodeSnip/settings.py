@@ -101,10 +101,14 @@ CKEDITOR_CONFIGS = {
              '-', 'Maximize',
              '-', 'Language',
              '-', 'Smiley',
-             'CodeSnippet',
+             '-', 'CodeSnippet',
+
             ],
             ['RemoveFormat', 'Source'],
+
+
         ],
+        'extraPlugins': 'codesnippet',
         'height': 500,
         'width': 400,
         'toolbarCanCollapse': True,
