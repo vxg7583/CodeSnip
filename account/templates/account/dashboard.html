@@ -1,0 +1,25 @@
+{% extends "csnip/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<style media="screen">
+  .round-border{
+    border: 0.2px solid black;
+    border-radius: 50px;
+    border-width: 50px;
+  }
+</style>
+
+  <br><br><br><br>
+  <h2 align="center">What's happening?</h2>
+  <hr>
+  <div id="action-list container" class="container">
+    {% for action in actions %}
+      {% include "actions/action/detail.html" %}
+    {% endfor %}
+  </div>
+
+
+{% block paginator %}{% endblock %}
+{% endblock %}

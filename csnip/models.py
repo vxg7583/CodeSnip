@@ -46,7 +46,6 @@ class Snippet(models.Model):
                                                     self.created.month,\
                                                     self.created.day,self.slug])
 
-
     def __str__(self):
         return self.title
 

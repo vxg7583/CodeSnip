@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'social_django',
     'django_social_share',
+    'actions.apps.ActionsConfig',
     'django.contrib.postgres',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -90,6 +91,11 @@ INSTALLED_APPS = [
         #         'Maximize',
 
             # ]},
+
+
+
+
+
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [

@@ -1,0 +1,52 @@
+{% load thumbnail %}
+
+{% with user=action.user profile=action.user.profile %}
+<style media="screen">
+  img{
+    border: 0.2px dotted black;
+    border-radius:25px;
+  }
+</style>
+
+<div class="container" align="center">
+  <div class="images">
+    {% if profile.photo %}
+      {% thumbnail user.profile.photo "80x80" crop="100%" as im %}
+        <a href="{{ user.get_absolute_url }}">
+          <img src="{{ im.url }}" alt="{{ user.get_full_name }}" class="item-img">
+
+        </a>
+      {% endthumbnail %}
+    {% endif %}
+    {% if action.target %}
+      {% with target=action.target %}
+        {% if target.image %}
+          {% thumbnail target.image "60x60" crop="100%" as im %}
+            <a href="{{ target.get_absolute_url }}">
+              <img src="{{ im.url }}" class="item-img round-border">
+            </a>{% endthumbnail %}
+
+        {% endif %}
+      {% endwith %}
+    {% endif %}
+  </div>
+  <div class="info">
+    <p>
+      <span style="font-size:1.2vw" class="date">{{ action.created|timesince }} ago</span>
+      <br />
+      <a href="{{ user.get_absolute_url }}">
+        <b style="color:red;">{{ user.first_name }}</b>
+      </a>
+      <b>{{ action.verb }}</b>
+      {% if action.target %}
+        {% with target=action.target %}
+          <a style="color:red;" href="{{ target.get_absolute_url }}"><b>{{ target }}</b></a>
+        {% endwith %}
+      {% endif %}
+    </p>
+
+  </div>
+  <br>
+
+</div>
+{% endwith %}

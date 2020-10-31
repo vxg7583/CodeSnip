@@ -20,6 +20,7 @@
   .div-snipexp1{
 
     padding-top:50px;
+    padding-left:100px;
 
   }
 
@@ -101,7 +102,7 @@
 
 
 
-              <button class="btn btn-danger" type="submit" onclick="location.href='{% url 'csnip:snippet_share' snippet.id %}';" name='share'>Share Me!</button>
+              <!-- <button class="btn btn-danger" type="submit" onclick="location.href='{% url 'csnip:snippet_share' snippet.id %}';" name='share'>Share Me!</button> -->
 
             <button class="btn btn-dark" type="button" name="button">
             <div class="like-part">
@@ -132,7 +133,7 @@
             </div>
 
 
-
+<br>
         <pre class="precode">
 <code>{{ snippet.body|safe }}</code>
         </pre>
@@ -142,6 +143,7 @@
       <div class="div-snipexp col-md-6">
         <br>
         <div class="div-snipexp1">
+
             <h4><a href="#">Explanation</a></h4>
             {{ snippet.explanation|safe }}
         </div>

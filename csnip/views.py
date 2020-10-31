@@ -22,6 +22,7 @@ from django.contrib.postgres.search import TrigramSimilarity
 # from django_comments.views.moderation import perform_delete
 # from django_comments.models import Comment
 import django.http as http
+from actions.utils import create_action
 # uuid.uuid4().hex[:6].upper()
 
 
@@ -44,17 +45,17 @@ def snippet_search(request):
 
             results = Snippet.publishedd.annotate(
                 rank=SearchRank(
-                    F('title_vector'),
-                    SearchQuery(query)
+                    'title_vector',
+                    SearchQuery(query, config="english")
                 )
 
             ).annotate(
                 rank=SearchRank(
-                    F('explanation_vector'),
-                    SearchQuery(query)
+                    'explanation_vector',
+                    SearchQuery(query, config="english")
                 )
                 # similarity=TrigramSimilarity(F('explanation_vector'), query)
-            ).filter(rank__gte=0.0000001).order_by('-rank')
+            ).filter(rank__gte=0.00000000001).order_by('-rank')
 
             # results = results.filter(rank__gte=0.00001).order_by('-rank')
             # results = Snippet.publishedd.filter(Q(title_vector__icontains=query) \
@@ -225,13 +226,15 @@ def snippet_create(request):
         if form.is_valid():
             cd = form.cleaned_data
             new_item = form.save(commit=False)
-            s = new_item.title[::-1]+new_item.explanation[:5]+uuid.uuid4().hex[:6].upper()
+            # s = new_item.title[::-1]+new_item.explanation[:5]+uuid.uuid4().hex[:6].upper()
+            s = new_item.title+'-'+uuid.uuid4().hex[:6].upper()
             new_item.slug = slugify(s)
             # assign current user to the snippet
             new_item.user = request.user
             # s_tags = form.cleaned_data['tags']
             # new_item.tags.add(*s_tags )
             new_item.save()
+            create_action(request.user, 'created snippet', new_item)
             form.save_m2m()
 
 
@@ -264,6 +267,7 @@ def snip_like(request):
             # create_action(request.user, 'likes', image)
             if action == 'like':
                 snippet.user_like.add(request.user)
+                create_action(request.user, 'likes', snippet)
             else:
                 snippet.user_like.remove(request.user)
             return JsonResponse({'status':'ok'})

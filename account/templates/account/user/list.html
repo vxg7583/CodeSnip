@@ -8,24 +8,26 @@
 {% block content %}
 <style media="screen">
   .user{
-    border: 0.1px dashed black;
-    height:100%;
-    width:100%;
+
+
+
     border-radius:50px;
 
   }
   .user:hover {
     border: 2px dashed;
-   border-color: red;
+   border-color: black;
+
 }
 
   .round-border{
     border: 0.2px solid black;
     border-radius: 50px;
+    border-width: 50px;
   }
 </style>
 
-<div class="container-fluid" align="center">
+<div class="container" align="center">
 
 
   <br><br><br><br><br>
@@ -40,18 +42,18 @@
             <img class = "round-border" src="{{ im.url }}">
           {% endthumbnail %}
         </a>
-
+          <br>
           <b><a href="{{ user.get_absolute_url }}" class="title">
             {{ user.username }}
 
           </a></b>
 
           <br><br>
-          <b><a style="color:orange;"href="{{ user.get_absolute_url }}">{{ user.snippets_created.count }} Snippets</a></b>
+          <b><a style="color:red;"href="{{ user.get_absolute_url }}">{{ user.snippets_created.count }} Snippets</a></b>
 
 
       </div>
-      <hr>
+      <br><br>
     {% endfor %}
 
   </div>
