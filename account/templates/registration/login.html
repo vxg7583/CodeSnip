@@ -1,8 +1,10 @@
 {% extends "csnip/base.html" %}
 {% load crispy_forms_tags %}
 
+
 {% block content %}
-  <br><br><br>
+  <br><br><br><br>
+
   <div class="container">
       <h2>Snipper Sign In</h2>
       {% if form.errors %}
@@ -13,8 +15,8 @@
       {% else %}
         <p>Please , use the following form to sign-in. If you don't have an account <a href="{% url 'register' %}">Register here</a></p>
       {% endif %}
-      <div class="login-form">
-        <form class="" action="{% url 'login' %}" method="post">
+
+        <form action="{% url 'login' %}" method="post">
           {{ form|crispy }}
           {% csrf_token %}
           <input type="hidden" name="next" value="{{ next }}">
@@ -22,7 +24,7 @@
         </form>
         <p><a href="{% url "password_reset" %}">Forgot password?</a></p>
 
-      </div>
+
 
 
 
