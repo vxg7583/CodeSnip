@@ -254,14 +254,14 @@ MEDIA_URL = '/media/'
 
 # social auth settings
 SOCIAL_AUTH_FACEBOOK_KEY = '706115360116954' # Facebook App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = 'fc313d2622706b3eb5edaa21d6f087b9' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SECRET = '' # Facebook App Secret
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 SOCIAL_AUTH_TWITTER_KEY = 'TvORfCwtk2EFX3zYlrzQSUbWz' # Twitter Consumer Key
-SOCIAL_AUTH_TWITTER_SECRET = 'EP2f2IEJdwtMUjnYj0oghgIAVcaPvQcjMYhtjDbsTV9oekeMG7' # Twitter Consumer Secret
+SOCIAL_AUTH_TWITTER_SECRET = '' # Twitter Consumer Secret
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '943335960852-qi7ik3h4q1ijbf2g3ssv5dp51ba18ku8.apps.googleusercontent.com' # Google Consumer Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'WhBxZ_janCOJSkqJ9lNZHKwQ' # Google Consumer Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' # Google Consumer Secret
 
 # AAAAAAAAAAAAAAAAAAAAADGUHwEAAAAAu%2BACkpJx21NbdLFL463SsF4OsUk%3DCcGt9zzh1cTdD4e8x0bfEg3FoeigxAaKjRNzOHm5WHtHucEc9x twitter bearer token
 try:
